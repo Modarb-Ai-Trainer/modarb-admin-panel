@@ -1,5 +1,11 @@
 .dashboardContainer{
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+.dashTop{
+    display: flex;
     justify-content: space-between;
     gap: 20px;
 }
@@ -15,14 +21,11 @@
     gap: 15px;
 }
 
-.dashChart{
 
-}
 .dashSubCharts{
     display: flex;
     justify-content: space-between;
 }
 .dashRight{
-
 flex: 1;
 }

@@ -1,6 +1,6 @@
- 
 import React from 'react'
 import styles from './dashboard.module.css'
+import DownloadsChart from '@/components/large/charts/DownloadsChart/DownloadsChart'
 import Widgets from '@/components/small/Widgets/Widgets.jsx'
 import GoalChart from '@/components/large/charts/goalChart/GoalChart'
 import UserChart from '@/components/large/charts/userChart/UserChart'
@@ -13,6 +13,8 @@ function Dashboard() {
   
     return (
         <div className={styles.dashboardContainer}>
+            <div className={styles.dashTop} >
+
             <div className={styles.dashLeft}>
                 <div className={styles.dashWidgets}>
                     <Widgets />
@@ -31,20 +33,24 @@ function Dashboard() {
                 </div>
 
 
-                <div className={styles.dashAdminTable}>
-                        <AdminTable/>
-                </div>
+               
             </div>
             <div className={styles.dashRight}>
                 <div className={styles.feedback}>
                         <Feedback/>
                 </div>
-                <div className={styles.level}>
-                    
+                <div className={styles.downloads}>
+                    <DownloadsChart/>
                 </div>
+            </div>
+            </div>
+        
+            <div className={styles.dashAdminTable}>
+        <AdminTable/>
             </div>
             
         </div>
+
     )
 }
 
