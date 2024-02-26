@@ -1,0 +1,41 @@
+
+.topcontainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .leftsearch {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 2px 30% 2px 18px;
+   border-radius: 15px;
+   background-color: var(--main-color);
+  }
+  
+  .leftsearch input {
+    padding: 10px;
+    border: none;
+    background: none;
+    outline: none;
+    color: var(--txt-color);
+    font-size: 12px;
+    font-weight: lighter;
+    }
+  
+  
+
+  .rightbar{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .profile{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+ 

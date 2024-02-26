@@ -1,0 +1,28 @@
+.dashboardContainer{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.dashLeft{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+.dashWidgets{
+    display: flex;
+    gap: 15px;
+}
+
+.dashChart{
+
+}
+.dashSubCharts{
+    display: flex;
+    justify-content: space-between;
+}
+.dashRight{
+
+flex: 1;
+}
