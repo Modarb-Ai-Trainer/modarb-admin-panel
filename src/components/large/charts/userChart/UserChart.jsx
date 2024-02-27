@@ -27,7 +27,7 @@ const xLabels = [
   return (
     <div className={styles.usercharts}>
      <LineChart
-      width={700}
+      width={800}
       height={300}
       series={[
         { data: pData, label: 'Active users' ,color:'#997AFF'},

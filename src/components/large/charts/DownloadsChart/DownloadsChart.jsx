@@ -26,9 +26,10 @@ const xLabels = [
 
   return (
     <div className={styles.DownloadsChart}>
+        <span>App Downloads</span>
        <ChartContainer className={styles.chart}
   width={280}
-  height={300}
+  height={350}
   series={[
     { data: uData, label: 'App downloads', type: 'line', color: '#39FF67' },
   ]}
