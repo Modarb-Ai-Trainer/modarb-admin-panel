@@ -39,7 +39,7 @@ const xLabels = [
       <LinePlot />
       <MarkPlot />
       <ChartsReferenceLine
-        x="Page C"
+        x="dec"
         label="Max PV PAGE"
         lineStyle={{ stroke: 'red' }}
       />
