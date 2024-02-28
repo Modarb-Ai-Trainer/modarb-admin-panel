@@ -1,12 +1,13 @@
 import React from 'react';
-import styles from './topbar.module.css';
+import styles from './TopBar.module.css';
 import { FiSearch } from 'react-icons/fi';
 import { RiAccountCircleFill } from "react-icons/ri";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import SearchBar from '@/components/small/Inputs/SearchBar/SearchBar'
 import Image from 'next/image';
 
 
-const Topbar = () => {
+const TopBar = () => {
   return (
     <div className={styles.topcontainer}>
 
@@ -14,8 +15,7 @@ const Topbar = () => {
       <div className={styles.icon}>
           <FiSearch />
         </div>
-        <input type="text" placeholder="Search..." />
-        
+        <SearchBar/>
       </div>
 
       <div className={styles.rightbar}> 
@@ -33,4 +33,4 @@ const Topbar = () => {
   );
 };
 
-export default Topbar;
+export default TopBar;

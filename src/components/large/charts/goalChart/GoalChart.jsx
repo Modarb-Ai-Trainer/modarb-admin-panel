@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { BarChart } from '@mui/x-charts/BarChart';
-import styles from './goalchart.module.css'
+import styles from './GoalChart.module.css'
 const GoalChart = () => {
   const uData = [4000, 3000, 2000, 2780];
 const pData = [2400, 1398, 9800, 3908];

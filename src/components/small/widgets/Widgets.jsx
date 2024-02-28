@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './widgets.module.css';
+import styles from './Widgets.module.css';
 import { IoTrendingUp } from "react-icons/io5";
 import {WidgetsData} from './widgetsData';
 

@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SideDrawer from "@/components/large/side-drawer/SideDrawer";
-import Topbar from "@/components/large/topbar/topbar";
+import SideDrawer from "@/components/large/Sidedrawer/SideDrawer";
+import TopBar from "@/components/large/TopBar/TopBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +21,7 @@ export default function RootLayout({children}) {
           
        <div className="content">
        <div className="topbar">
-         <Topbar/> 
+         <TopBar/> 
           </div> 
             {children}
        </div>

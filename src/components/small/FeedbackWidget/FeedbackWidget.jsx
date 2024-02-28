@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from './feedback.module.css'
-const Feedback = () => {
+import styles from './feedbackWidget.module.css'
+const FeedbackWidget = () => {
   return (
     <div className={styles.Feedbackcontainer}>
         <div className={styles.title}>
@@ -28,4 +28,4 @@ const Feedback = () => {
   )
 }
 
-export default Feedback
+export default FeedbackWidget
