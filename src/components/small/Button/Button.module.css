@@ -1,0 +1,49 @@
+.button {
+    font-size: 2rem;
+    border: 0;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    border: 1px solid transparent;
+
+
+}
+
+
+
+.primary {
+    background-color: navy;
+}
+
+.danger {
+    background-color: red;
+}
+
+.success {
+    background-color: green;
+}
+
+.small {
+    padding: 15px 6rem;
+}
+
+.mediam {
+    padding: 15px 12rem;
+}
+
+.large {
+    padding: 15px 25rem;
+}
+
+.small:hover {
+    padding: 15px 7rem;
+}
+
+.mediam:hover {
+    padding: 15px 14rem;
+}
+
+.large:hover {
+    padding: 15px 28rem;
+}

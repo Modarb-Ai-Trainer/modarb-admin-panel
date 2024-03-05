@@ -1,76 +1,83 @@
-.sideContainer{
-    background-color: var(--main-color);
-    min-height: 100vh;
-    width: 160px;
-    padding: 10% 2%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: center;
-    border-radius: 15px;
-    font-weight: 500;
-    position: relative;
-    
+.sideContainer {
+  background-color: var(--main-color);
+  min-height: 100vh;
+  width: 160px;
+  padding: 10% 2%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  border-radius: 15px;
+  font-weight: 500;
+  position: relative;
+
 }
-.sideLogo{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.sideLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.sideLogo img{
-    width: 75%
+
+.sideLogo img {
+  width: 75%
 }
+
 .sidelinks {
-color: var(--txt-color);
-font-size: 13px;
-position: relative;
-display: flex;
-flex-direction: column;
-gap: 17px;
+  color: var(--txt-color);
+  font-size: 13px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
 
 }
 
 .sidelinks ul li {
-display: flex;
-gap: 10%;
-align-items: center;
+  display: flex;
+  gap: 10%;
+  align-items: center;
 
 }
-.sidebottomlink{
+
+.sidebottomlink {
   display: flex;
   align-items: center;
   align-self: center;
   justify-content: center;
   margin-right: 17px;
   position: absolute;
-  bottom:50%;
+  bottom: 50%;
 }
-.sidebottomlink li{
-display: flex;
-gap: 5%;;
+
+.sidebottomlink li {
+  display: flex;
+  gap: 5%;
+  ;
 }
 
 .activeLink {
-    background-image: linear-gradient(to right, rgba(103, 57, 255, 1), rgba(103, 57, 255, .1));
-    padding:  0 5px;
-    border-radius: 15px; 
-    
+  background-image: linear-gradient(to right, rgba(103, 57, 255, 1), rgba(103, 57, 255, .1));
+  padding: 0 5px;
+  border-radius: 15px;
+
 }
+
 @media screen and (max-width: 768px) {
-    .sideContainer {
-      width:20%;
-    }
-    
-    .sideLogo img {
-      width: 80%; 
-    }
-    
-    .sidelinks ul li {
-      gap: 5%; 
-    }
-  
-    .sidelinks ul li a {
-      font-size: 12px; 
-    }
+  .sideContainer {
+    width: 20%;
+  }
+
+  .sideLogo img {
+    width: 80%;
+  }
+
+  .sidelinks ul li {
+    gap: 5%;
+  }
+
+  .sidelinks ul li a {
+    font-size: 12px;
+  }
 }
