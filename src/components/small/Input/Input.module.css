@@ -10,11 +10,11 @@
 
     .input__field {
         width: 100%;
-        padding: 2px 0px;
+        padding: 7px 0px;
         background-color: transparent;
         font-size: 20px;
         border: 1px solid transparent;
-        border-bottom: 3px solid var(--line-solor);
+        border-bottom: 1px solid var(--line-solor);
         outline: none;
     }
 }
