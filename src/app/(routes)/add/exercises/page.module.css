@@ -25,24 +25,73 @@
         justify-content: baseline;
         border-radius: 50px;
 
-        .addExercises__bottom__left {
-            flex: 1;
-        }
+        .addExercises__bottom__form {
+            display: flex;
 
-        .addExercises__bottom__right {
-            flex: 2;
+            .addExercises__bottom__form__left {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
 
-            .addExercises__bottom__right__form {
+                .addExercises__bottom__form__left__top {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    font-size: 4rem;
+
+                    .addExercises__bottom__form__left__top__file {
+                        display: none;
+                    }
+
+                    .addExercises__bottom__form__left__top__icon {
+                        background-color: var(--bc-light-color);
+                        width: 15rem;
+                        height: 15rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        margin-bottom: 2rem;
+                        cursor: pointer;
+
+                        .addExercises__bottom__form__left__top__icon__label {
+                            cursor: pointer;
+                            transition: 0.5s ease;
+
+                        }
+
+
+
+
+                    }
+
+                    .addExercises__bottom__form__left__top__icon:hover {
+                        .addExercises__bottom__form__left__top__icon__label {
+                            color: red;
+                            scale: 1.3;
+                        }
+                    }
+
+                    .addExercises__bottom__form__left__top__text {
+                        font-size: 3.5rem;
+                        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    }
+                }
+            }
+
+            .addExercises__bottom__form__right {
+
+                flex: 2;
                 display: flex;
                 row-gap: 7rem;
                 flex-wrap: wrap;
                 justify-content: space-around;
-
-                .addExercises__bottom__right__form__buttom {
-                    width: 50rem;
-                    background-color: red;
-                }
             }
         }
+
+
+
     }
 }
