@@ -1,4 +1,4 @@
-import Input from '@/components/small/Input/Input'
+import Input from '@/components/small/Inputs/Input'
 import React from 'react'
 import styles from './page.module.css';
 import Button from '@/components/small/Button/Button';

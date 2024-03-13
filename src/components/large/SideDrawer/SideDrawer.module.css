@@ -54,7 +54,9 @@
 .sidebottomlink li {
   display: flex;
   gap: 5%;
-  ;
+  align-self: center;
+  align-items: center;
+
 }
 
 .activeLink {

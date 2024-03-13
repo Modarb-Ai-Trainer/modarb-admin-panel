@@ -2,7 +2,8 @@
 import React from 'react'
 import styles from './sideDrawer.module.css'
 import { IoLogOut } from "react-icons/io5";
-import NavigationLinks from './NavigationLinks'
+import NavLinks from './NavLinks';
+
 
 function SideDrawer() {
 
@@ -16,8 +17,7 @@ function SideDrawer() {
                 <img className={styles.sidelogo} src="/images/logo.png"></img>
             </div>
 
-
-            <NavigationLinks/>
+            <NavLinks/>
             <div className={styles.sidebottomlink}>
             <li >
                      <IoLogOut size={"23"}/>

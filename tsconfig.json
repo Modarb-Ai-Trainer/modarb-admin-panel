@@ -33,7 +33,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/(routes)/dashboard/page.jsx"
-  ],
+, "src/components/large/SideDrawer/NavigationLinks.jsx", "src/components/large/SideDrawer/SideDrawer.tsx", "src/components/large/SideDrawer/NavLinks.tsx", "src/app/document.js"  ],
   "exclude": [
     "node_modules"
   ]

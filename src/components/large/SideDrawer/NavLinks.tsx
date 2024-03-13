@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from './sideDrawer.module.css'
-import {links} from './links.js'
+import {links} from './links'
 import { usePathname } from 'next/navigation';
 
+import { IoLogOut } from "react-icons/io5";
 
-const NavigationLinks = () => {
+const NavLinks = () => {
     const pathname = usePathname();
   return (
     <div className={styles.sidelinks}>
@@ -19,12 +20,14 @@ const NavigationLinks = () => {
 
                             </a>
                         </li>  
+                     
                         </ul>
                 })
             }
+            
               
             </div>
   )
 }
 
-export default NavigationLinks
+export default NavLinks

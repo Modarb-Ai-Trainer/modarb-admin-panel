@@ -36,13 +36,19 @@ const AdminTable = () => {
           .MuiTypography-root {
             color: white !important;
           }
+         
         `}
       </style>
-      <DataGrid
+      <DataGrid 
+      sx={{
+        margin:2,   
+       
+            
+      }}
       
         rows={data} 
         columns={[
-          { field: 'id', headerName: 'ID', width: 70 },
+          { field: 'id', headerName: 'ID', width: 70},
           { field: 'AdminName', headerName: 'AdminName', width: 130 },
           { field: 'Gmail', headerName: 'Gmail', width: 170 },
           { field: 'permission', headerName: 'permission',  width: 120 },

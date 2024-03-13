@@ -2,6 +2,8 @@
 import React from 'react'
 import { BarChart } from '@mui/x-charts/BarChart';
 import styles from './GoalChart.module.css'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 const GoalChart = () => {
   const uData = [4000, 3000, 2000, 2780];
 const pData = [2400, 1398, 9800, 3908];
@@ -11,7 +13,19 @@ const xLabels = [
   'lose weight',
   'sports',
 ];
+const darkModeTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    background: {
+      default: 'transparent',
+    },
+    text: {
+      primary: '#FFFFFF',
+    },
+  },
+});
   return (
+    <ThemeProvider theme={darkModeTheme}>
     <div className={styles.barchart}>
       <BarChart
       width={340}
@@ -23,6 +37,7 @@ const xLabels = [
       xAxis={[{ data: xLabels, scaleType: 'band' }]}
     />
     </div>
+    </ThemeProvider>
   )
 }
 
