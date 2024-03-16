@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SideDrawer from "../../src/components/large/SideDrawer/SideDrawer";
-import TopBar from "@/components/large/topbar/topbar";
+import TopBar from "@/components/large/TopBar/Topbar";
 
 const inter = Inter({ subsets: ["latin"] });
 

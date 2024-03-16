@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import styles from './PopularChart.module.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+
 type DataEntry = {
   value: number;
   label: string;

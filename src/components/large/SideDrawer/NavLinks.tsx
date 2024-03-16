@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from './SideDrawer.module.css'
-import { links } from './links'
+import { links } from './links' 
 import { usePathname } from 'next/navigation';
 
-import { IoLogOut } from "react-icons/io5";
 
 const NavLinks = () => {
     const pathname = usePathname();

@@ -22,6 +22,7 @@ const UserChart = () => {
     'December',
   ];
 
+  
   let theme = createTheme({
     palette: {
       mode: 'dark',
