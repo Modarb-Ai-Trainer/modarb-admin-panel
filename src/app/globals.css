@@ -70,7 +70,7 @@ li {
      */
   @media(max-width:770px) {
     width: 20%;
-    background-color: green;
+    background-color: yellow;
   }
 }
 
