@@ -12,6 +12,7 @@
   font-weight: 500;
   position: relative;
 
+
 }
 
 .sideLogo {
@@ -69,6 +70,7 @@
 @media screen and (max-width: 768px) {
   .sideContainer {
     width: 20%;
+
   }
 
   .sideLogo img {

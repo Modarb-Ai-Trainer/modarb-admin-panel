@@ -45,12 +45,12 @@ function page() {
             <Input type='text' PlaceHolder='Lorem ipsum' label='Reps' size='small' />
             <Input type='text' PlaceHolder='Lorem ipsum' label='Sets' size='small' />
 
-            <Input type='text' PlaceHolder='Lorem ipsum' label='Instruction' size='large' />
-            <Input type='text' PlaceHolder='Lorem ipsum' label='Benefits' size='large' />
-            <Input type='text' PlaceHolder='Lorem ipsum' label='Equipments' size='large' />
 
             <Input type='text' PlaceHolder='Lorem ipsum' label='Primary Muscle' size='small' />
             <Input type='text' PlaceHolder='Lorem ipsum' label='Second Muscle' size='small' />
+            <Input type='text' PlaceHolder='Lorem ipsum' label='Instruction' size='large' />
+            <Input type='text' PlaceHolder='Lorem ipsum' label='Benefits' size='large' />
+            <Input type='text' PlaceHolder='Lorem ipsum' label='Equipments' size='large' />
             <Button size='large' type='primary' >Add</Button>
           </section>
         </form>

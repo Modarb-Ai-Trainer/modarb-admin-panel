@@ -16,6 +16,16 @@
 
 html {
   font-size: 10px;
+
+  @media(max-width:1000px) {
+    font-size: 8px;
+  }
+
+  @media(max-width:800px) {
+    font-size: 5px;
+  }
+
+
 }
 
 html,
@@ -53,6 +63,15 @@ li {
 .sidedrawer {
   display: flex;
   min-height: 100vh;
+
+  /*
+    GREEN COLOR AS INDICATGOR FOR CHANGE :))
+    It causes some issues in the media query of [add/exercises] so have a look
+     */
+  @media(max-width:770px) {
+    width: 20%;
+    background-color: green;
+  }
 }
 
 .content {

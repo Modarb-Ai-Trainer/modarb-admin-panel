@@ -25,14 +25,26 @@
         justify-content: baseline;
         border-radius: 50px;
 
+
         .addExercises__bottom__form {
             display: flex;
+
+            @media(max-width:1100px) {
+                flex-direction: column;
+            }
 
             .addExercises__bottom__form__left {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
+
+                @media(max-width:1100px) {
+                    flex-direction: row;
+                    margin-bottom: 3rem;
+                    justify-content: space-evenly;
+
+                }
 
                 .addExercises__bottom__form__left__top {
                     display: flex;
@@ -55,6 +67,13 @@
                         border-radius: 50%;
                         margin-bottom: 2rem;
                         cursor: pointer;
+                        padding: 1rem;
+
+                        @media(max-width:1100px) {
+                            width: 11rem;
+                            height: 11rem;
+
+                        }
 
                         .addExercises__bottom__form__left__top__icon__label {
                             cursor: pointer;
@@ -77,6 +96,11 @@
                     .addExercises__bottom__form__left__top__text {
                         font-size: 3.5rem;
                         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+                        @media(max-width:1100px) {
+                            font-size: 2rem;
+
+                        }
                     }
                 }
             }
@@ -87,7 +111,7 @@
                 display: flex;
                 row-gap: 7rem;
                 flex-wrap: wrap;
-                justify-content: space-around;
+                justify-content: space-between;
             }
         }
 
