@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './Page.module.css'
 import DownloadsChart from '../../../components/large/charts/DownloadsChart/DownloadsChart'
-import Widgets from '../../../components/small/Widgets/Widgets.jsx'
-import GoalChart from '../../../components/large/charts/GoalChart/GoalChart'
+import Widgets from '../../../components/small/widgets/Widgets'
+import GoalChart from '../../../components/large/charts/goalChart/GoalChart'
 import UserChart from '../../../components/large/charts/userChart/UserChart'
 import PopularChart from '../../../components/large/charts/popularChart/PopularChart'
 import AdminTable from '../../../components/large/AdminTable/AdminTable'
@@ -34,10 +34,10 @@ function Dashboard() {
 
 
 
-{/* < HEAD/> */}
-               
-            </div>
-            {/* <div className={styles.dashRight}>
+                    {/* < HEAD/> */}
+
+                </div>
+                {/* <div className={styles.dashRight}>
                 <div className={styles.feedback}>
                         <FeedbackWidget/>
 
@@ -58,7 +58,7 @@ function Dashboard() {
             </div>
 
         </div>
-       
+
 
     )
 }

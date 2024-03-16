@@ -1,13 +1,13 @@
 'use client'
 import React from 'react'
-import styles from './sideDrawer.module.css'
+import styles from './SideDrawer.module.css'
 import { IoLogOut } from "react-icons/io5";
 import NavLinks from './NavLinks';
 
 
 function SideDrawer() {
 
-    
+
 
     return (
         <div className={styles.sideContainer}>
@@ -17,15 +17,15 @@ function SideDrawer() {
                 <img className={styles.sidelogo} src="/images/logo.png"></img>
             </div>
 
-            <NavLinks/>
+            <NavLinks />
             <div className={styles.sidebottomlink}>
-            <li >
-                     <IoLogOut size={"23"}/>
+                <li >
+                    <IoLogOut size={"23"} />
                     <a>Logout</a>
                 </li>
-          
+
             </div>
-           
+
         </div>
     )
 }

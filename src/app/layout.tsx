@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SideDrawer from "../../src/components/large/SideDrawer/SideDrawer";
-import TopBar from "@/components/large/TopBar/TopBar";
+import TopBar from "@/components/large/topbar/topbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,12 +26,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={inter.className}>
         <main className="mainStructure">
           <div className="sidedrawer">
-            <SideDrawer /> 
-          </div> 
+            <SideDrawer />
+          </div>
           <div className="content">
             <div className="topbar">
-              <TopBar /> 
-            </div> 
+              <TopBar />
+            </div>
             {children}
           </div>
         </main>
