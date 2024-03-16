@@ -92,5 +92,6 @@ const PopularChart: React.FC = () => {
     </ThemeProvider>
   );
 };
+//
 
 export default PopularChart;
