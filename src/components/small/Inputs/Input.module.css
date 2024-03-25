@@ -21,4 +21,9 @@
             width: 90%;
         }
     }
+
+    .input__field:focus {
+        border-bottom: 1px solid rgb(100, 140, 48);
+
+    }
 }
