@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './SideDrawer.module.css'
-import { links } from './links' 
+import { links } from './Links'
 import { usePathname } from 'next/navigation';
 
 

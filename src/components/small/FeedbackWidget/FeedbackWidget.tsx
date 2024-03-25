@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './feedbackWidget.module.css'
+import styles from './FeedbackWidget.module.css'
 const FeedbackWidget = () => {
   return (
     <div className={styles.Feedbackcontainer}>

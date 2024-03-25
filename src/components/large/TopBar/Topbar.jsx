@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './topbar.module.css';
+import styles from './TopBar.module.css';
 import { FiSearch } from 'react-icons/fi';
 import { RiAccountCircleFill } from "react-icons/ri";
 import { MdKeyboardArrowDown } from "react-icons/md";
