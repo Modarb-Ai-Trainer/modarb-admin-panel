@@ -13,43 +13,43 @@ export const links = [
         id: 1,
         title: "Dashboard",
         path: "/dashboard",
-        icon: <AiFillDashboard size={"25"} />
+        icon: <AiFillDashboard size={16} />
         
     },
     {
         id: 2,
         title: "Users",
         path: "/users",
-        icon: <HiUsers />
+        icon: <HiUsers  size={16} />
     },
     {
         id: 3,
         title: "Exercises",
         path: "/exercises",
-        icon: <LiaDumbbellSolid />,
+        icon: <LiaDumbbellSolid size={16}  />,
     },
     {
         id: 4,
         title: "Meals",
         path: "/meals",
-        icon: <GiKnifeFork />,
+        icon: <GiKnifeFork  size={16} />,
     },
     {
         id: 5,
         title: "Programs",
         path: "/programs",
-        icon: <HiClipboardList />,
+        icon: <HiClipboardList size={16}  />,
     },
     {
         id: 6,
         title: "Analytics",
         path: "/analytics",
-        icon: <GiProgression />,
+        icon: <GiProgression size={18} />,
     },
     {
         id: 7,
         title: "Admins",
         path: "/admins",
-        icon: <RiAdminFill />,
+        icon: <RiAdminFill size={16}  />,
     },
 ];

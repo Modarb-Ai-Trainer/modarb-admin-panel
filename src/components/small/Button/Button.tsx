@@ -6,12 +6,14 @@ interface types {
     children: React.ReactNode
 }
 function Button(props: types) {
+    const { size, type, children } = props;
+    const typeClass = type === 'popular' ? styles.popular : styles[type];
 
     return (
-        <button className={`${styles['button']}  ${styles[`${props.type}`]} ${styles[`${props.size}`]}`} >
-            {props.children}
+        <button className={`${styles.button} ${typeClass} ${styles[size]}`}>
+            {children}
         </button>
-    )
+    );
 }
 
 export default Button

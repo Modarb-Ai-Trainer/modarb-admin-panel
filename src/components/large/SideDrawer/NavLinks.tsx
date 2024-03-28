@@ -1,12 +1,15 @@
 import React from 'react'
 import styles from './SideDrawer.module.css'
-import { links } from './links' 
+import { links } from './Links' 
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { IoLogOut } from "react-icons/io5";
 
 
 const NavLinks = () => {
     const pathname = usePathname();
     return (
+        <div className={styles.CenterLinks}>
         <div className={styles.sidelinks}>
             {
                 links.map((link) => {
@@ -14,16 +17,26 @@ const NavLinks = () => {
 
                         <li className={pathname === link.path ? styles.activeLink : styles.other}>
                             {link.icon}
-                            <a href={link.path}>
-                                {link.title}
+                        
+                            <Link href={link.path}>
+                            {link.title}
 
-                            </a>
+                            </Link>
                         </li>
 
                     </ul>
                 })
             }
+             <div className={styles.sidebottomlink}>
+                <li >
+                    <IoLogOut size={"23"} />
+                    <a>Logout</a>
+                </li>
 
+            </div>
+
+        </div>
+        
 
         </div>
     )
