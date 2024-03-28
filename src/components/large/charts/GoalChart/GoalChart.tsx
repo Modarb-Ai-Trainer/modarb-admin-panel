@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { BarChart } from '@mui/x-charts/BarChart';
-import styles from './goalchart.module.css'
+import styles from './GoalChart.module.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const GoalChart = () => {
