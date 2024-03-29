@@ -1,61 +1,88 @@
-.Feedbackcontainer{
-    background-color: var(--main-color);
-    background-image: linear-gradient(to right, rgba(103, 57, 255, 1), rgba(32, 32, 32, 0.71)), url('/images/Progress Bar.png');
-    background-size: cover;   
-     min-height: 270px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    max-width: 290px;
-    gap: 30px;
-    
-}
-.title{
-    font-weight: 700;
-}
-.bottom{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-}
-.icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.rating{
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    width: 250px;
-    border-radius: 20px;
-    background: linear-gradient(to right, rgba(57, 31, 140, 1), rgba(32, 32, 32, 0.71));
+.feedback{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: var(--main-color);
+        min-height: 270px;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 5px;
 
-}
-.scale span{
-    font-weight: lighter;
-    font-size: 9px;
-}
-.scale{
-    display: flex;
-    justify-content: space-between;
+        .feedback_title{
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .feedback_feedbackcontainer{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding: 20px 5px;
+            background-image: url('/images/Progress Bar.png');
+            background-size:cover; 
+            background-position:top ;
+            position: relative; 
+            width: 100%;
+            height: 100%;
 
+            
+                .feedback_feedbackcontainer_bottom{
+                    margin-top: 25px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    align-items: center;
+                    gap: 25px;
+                    width: 100%;
+
+                    .feedback_feedbackcontainer_bottom_icon{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .feedback_feedbackcontainer_bottom_rating{
+                     display: flex;
+                    flex-direction: column;
+                    padding: 15px;
+                    width: 250px;
+                    border-radius: 20px;
+                    background: linear-gradient(89deg, #6739FF 5.11%, rgba(32, 32, 32, 0.71) 100.76%);
+
+                    .feedback_feedbackcontainer_bottom_rating_scale{
+                        display: flex;
+                        justify-content: space-between;
+
+                        .feedback_feedbackcontainer_bottom_rating_scale span{
+                            font-weight: lighter;
+                            font-size: 9px;
+                        }
+                    }
+
+                    .feedback_feedbackcontainer_bottom_rating_appRating{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                       
+                    }
+                    .feedback_feedbackcontainer_bottom_rating_appRating> span:nth-child(1){
+                        font-weight: bolder;
+                        font-size: 22px;
+                    }
+                    .feedback_feedbackcontainer_bottom_rating_appRating span:nth-child(2){
+                        font-weight: 300;
+                        font-size: 9px;
+                    }
+                    
+                    }
+                }
+        
+            
+        }
+        
+
+           
 }
-.appRating{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.appRating span:nth-child(1){
-    font-weight: bolder;
-    font-size: 22px;
-}
-.appRating span:nth-child(2){
-    font-weight: 300;
-     font-size: 9px;
-} 
+
+
+

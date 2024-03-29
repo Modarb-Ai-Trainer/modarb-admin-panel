@@ -1,10 +1,6 @@
 import React from 'react'
 import styles from './SideDrawer.module.css'
-<<<<<<< HEAD
 import { links } from './Links' 
-=======
-import { links } from './Links'
->>>>>>> 6d46082f8826afb17f3f51726fac9f9639030594
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IoLogOut } from "react-icons/io5";
@@ -13,13 +9,13 @@ import { IoLogOut } from "react-icons/io5";
 const NavLinks = () => {
     const pathname = usePathname();
     return (
-        <div className={styles.CenterLinks}>
-        <div className={styles.sidelinks}>
+        <div className={styles.centerLinks}>
+        <div className={styles.centerLinks_sideLinks}>
             {
                 links.map((link) => {
-                    return <ul key={link.id} >
+                    return <ul key={link.id} className={pathname === link.path ? styles.activeLink : styles.other}>
 
-                        <li className={pathname === link.path ? styles.activeLink : styles.other}>
+                        <li >
                             {link.icon}
                         
                             <Link href={link.path}>
@@ -31,7 +27,7 @@ const NavLinks = () => {
                     </ul>
                 })
             }
-             <div className={styles.sidebottomlink}>
+             <div className={styles.centerLinks_sideLinks_sidebottomlink}>
                 <li >
                     <IoLogOut size={"23"} />
                     <a>Logout</a>
@@ -42,7 +38,7 @@ const NavLinks = () => {
         </div>
         
 
-        </div>
+    </div>
     )
 }
 

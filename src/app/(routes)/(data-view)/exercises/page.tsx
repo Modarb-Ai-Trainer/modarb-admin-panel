@@ -15,8 +15,7 @@ interface Exercise {
 async function page() {
 
   const exercises:Exercise[] =await getData();
-  // console.log(exercises)
-console.log(Object.keys(exercises[0]))
+// console.log(Object.keys(exercises[0]))
   return (
     <div className={styles.dataView}>
       <div className={styles.dataView_cotainer}>

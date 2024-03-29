@@ -6,7 +6,31 @@ import ContainerList from '@/components/small/ContainerList/ContainerList';
 import img from '../../../../../../../public/images/img.png'
 import Link from 'next/link';
 import Button from '@/components/small/Button/Button';
-const SingleElement = () => {
+import { getExerciseById } from '@/app/Actions/Action';
+import { useParams } from 'next/navigation';
+
+interface Exercise {
+  id: number;
+  name: string;
+  avatar: string;
+  category: string;
+  image: string;
+  status: string;
+  reps: number;
+  sets: number;
+  duration: number;
+  targetMuscles:String,
+  benefits:string,
+  equipment: String,
+  instructions: String,
+
+}
+
+const SingleElement = async ({ params, searchParams }: { params: { id: Number }; searchParams: { id: number } }) => {
+  const exerciseId=params.id
+  const exercise:Exercise = await getExerciseById(exerciseId);
+  console.log(exerciseId)
+
   return (
     <div className={styles.SingleElement}>
       <div className={styles.SingleElement_Button}>
@@ -14,10 +38,10 @@ const SingleElement = () => {
       <div className={styles.singleElement_container}>
         <div className={styles.singleElement_container_top}>
           <div className={styles.singleElement_container_top_left}>
-            <Image src={img} alt='image' />
+            <Image src={exercise.image} alt='image' layout='fill' />
           </div>
           <div className={styles.singleElement_container_top_right}>
-            <SingleList  value1='1'  value2='deadlift' value3='full body' value4='12'   value5='4'  value6='3min' />
+            <SingleList  id={exercise.id}  name={exercise.name} category={exercise.category} sets={exercise.sets}  reps={exercise.reps} duration={exercise.duration}   />
           </div> 
         </div>
 
@@ -25,10 +49,10 @@ const SingleElement = () => {
         
         <div className={styles.singleElement_container_bottom}>
           <ContainerList name='target muscles' value2='leg' value3='back' primary='primary:' secondary='secondary:'/>
-          <ContainerList name='Equipment' value2='Barbell'/>
-          <ContainerList name='Instructions' value2='Lorem ipsum dolor sit amet consectetur. Tempor elementum odio et augue etiam dignissim. Eget quisque tellus duis pulvinar sit nisl sed sed quisque. Tellus turpis aliquam leo tempor egestas orci feugiat cras. Viverra cras sed auctor ac est curabitur tristique vitae.'/>
-          <ContainerList name='Benefits' value2='Lorem ipsum dolor sit amet consectetur. Tempor elementum odio et augue etiam dignissim. Eget quisque tellus duis pulvinar sit nisl sed sed quisque. Tellus turpis aliquam leo tempor egestas orci feugiat cras. Viverra cras sed auctor ac est curabitur tristique vitae.'/>
-        </div>
+          <ContainerList name='Equipment' value2={exercise.equipment}/>
+          <ContainerList name='Instructions' value2={exercise.instructions}/>
+          <ContainerList name='Benefits' value2={exercise.benefits}/>
+        </div> 
       
       </div> 
 

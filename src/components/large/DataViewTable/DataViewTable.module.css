@@ -47,7 +47,7 @@
   padding: 5px;
   border-radius: 5px;
   background-color:rgba(0, 187, 0, 0.25) ;
-  color: green;
+  color: rgb(208, 221, 208);
 
 
 }
@@ -61,16 +61,18 @@
   .viewButton{
       padding: 2px 5px ;
       border-radius: 5px;
-      color: rgba(103, 57, 255, 1);
-      border: 1px dotted rgba(103, 57, 255, 1);
+      color: #D0C2FF;
+      border: 1px dotted #D0C2FF;
       cursor: pointer;
 
   }
   .deleteButton{
+      display: flex;
+      align-items: center;
       padding: 2px 5px ;
       border-radius: 5px;
-      color: rgba(255, 57, 57, 1);
-      border: 1px dotted rgba(255, 57, 57, 1);
+      color: #e20808;
+      border: 1px dotted #e20808;
       cursor: pointer;
 
   }

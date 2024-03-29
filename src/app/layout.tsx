@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body className={inter.className}>
         <main className="mainStructure">
           <div className="sidedrawer">

@@ -4,6 +4,8 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Link from 'next/link';
 import styles from './DataViewTable.module.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { handleDelete } from '@/app/Actions/Action';
+import { MdDelete } from "react-icons/md";
 
 interface Exercise {
   id: number;
@@ -33,26 +35,20 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data }) => {
         <Link href={`/exercises/SingleElement/${params.row.id}`} passHref className={styles.viewButton}>
           view
         </Link>
-        <div className={styles.deleteButton}>delete</div>
+        <div className={styles.deleteButton}  onClick={() => handleDelete(params.row.id)}><MdDelete size={18} /></div>
       </div>
     ),
   };
 
-  // iterate over keys of data object
-  const columns: GridColDef[] = Object.keys(data[0]).map((key) => ({
+  const keysToDisplay: string[] = ['id', 'status', 'name', 'category'];
+
+  const columns: GridColDef[] = keysToDisplay.map((key) => ({
     field: key,
     headerName: key.toUpperCase(),
     width: 150,
   }));
 
   columns.forEach((column) => {
-    if (column.field === 'image') {
-      column.renderCell = (params) => (
-        <div className={styles.cellImage_container}>
-          <img className={styles.cellImage} src={params.value} alt="avatar" />
-        </div>
-      );
-    }
     if (column.field === 'status') {
       column.renderCell = (params) => (
         <div className={`${styles.cellWithStatus} ${params.value}`}>
