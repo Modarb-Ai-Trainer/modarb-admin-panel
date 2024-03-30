@@ -9,34 +9,34 @@ import { IoLogOut } from "react-icons/io5";
 const NavLinks = () => {
     const pathname = usePathname();
     return (
-        <div className={styles.centerLinks}>
-        <div className={styles.centerLinks_sideLinks}>
+        <div className={styles.CenterLinks}>
+        <div className={styles.sidelinks}>
             {
                 links.map((link) => {
-                    return <ul key={link.id} className={pathname === link.path ? styles.activeLink : styles.other}>
+                    return <ul key={link.id} >
 
-                        <li >
+                        <li className={pathname === link.path ? styles.activeLink : styles.other}>
                             {link.icon}
                         
                             <Link href={link.path}>
                             {link.title}
 
-                            </Link>
-                        </li>
+                                </Link>
+                            </li>
 
                     </ul>
                 })
             }
-             <div className={styles.centerLinks_sideLinks_sidebottomlink}>
+             <div className={styles.sidebottomlink}>
                 <li >
                     <IoLogOut size={"23"} />
                     <a>Logout</a>
                 </li>
 
+                </div>
+
             </div>
 
-        </div>
-        
 
     </div>
     )

@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.popular{
+.popular {
     background-color: var(--s-color);
     color: #ffff;
     border-radius: 20px;
@@ -36,7 +36,8 @@
 .mediam {
     padding: 15px 12rem;
 }
-.meduim{
+
+.meduim {
     padding: 14px 24px;
 }
 
@@ -54,4 +55,14 @@
 
 .large:hover {
     padding: 15px 28rem;
+}
+
+.full {
+    width: 90%;
+    padding: 15px 14rem;
+
+}
+
+.full:hover {
+    width: 100%;
 }
