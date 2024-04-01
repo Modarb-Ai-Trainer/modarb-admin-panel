@@ -1,35 +1,86 @@
-.dashboardContainer{
+.dashboard{
+    width: 100%;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
-}
-.dashTop{
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-.dashLeft{
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
-}
-.dashWidgets{
-    display: flex;
-    gap: 15px;
-    width: fit-content;
+
+    .dashboard_container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 20px;
+
+        .dashboard_container_top{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+
+            .dashboard_container_top_left{
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 20px;
+
+                .dashboard_container_top_left_dashWidgets{
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                    flex-wrap: wrap !important;
+                   
+                }
+                .dashboard_container_top_left_dashSubChart{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 3px;
+                }
+                
+            }
+            .dashboard_container_top_dashRight{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+       
+    }
+  
 }
 
 
-.dashSubCharts{
-    display: flex;
-    justify-content: space-between;
+@media (min-width: 1400px) and (max-width: 2000px) {
+
+
 }
-.dashRight{
-flex: 1;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
+
+@media (min-width: 1400px) and (max-width: 2000px) {
+
+
 }
+
+@media (max-width: 1024px)  {
+
+  
+            .dashboard_container_top{
+                display: flex;
+                flex-direction: column;
+    
+    
+                .dashboard_container_top_dashRight{
+                    flex-direction: row !important;
+                    width: 100% ;
+                    flex: 1 1;
+                    justify-content: space-between;
+                }
+                .dashboard_container_top_dashRight>div{
+                    margin: 5px;
+                    width: 100%;
+                }
+            }
+ }
+
+

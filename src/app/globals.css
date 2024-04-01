@@ -57,6 +57,7 @@ li {
 }
 
 .mainStructure {
+  width: 100%;
   display: flex;
 }
 

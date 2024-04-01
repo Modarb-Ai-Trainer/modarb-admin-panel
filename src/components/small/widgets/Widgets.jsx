@@ -5,7 +5,7 @@ import { WidgetsData } from './widgetsData';
 
 const Widgets = () => {
   return (
-    <>
+    <div  className={styles.widgets}>
       {
         WidgetsData.map((data, index) => {
           return (
@@ -30,7 +30,7 @@ const Widgets = () => {
           );
         })
       }
-    </>
+    </div>
   );
 };
 

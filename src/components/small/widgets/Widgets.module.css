@@ -1,17 +1,21 @@
+.widgets {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 .widgetContainer {
+    width: calc(25% - 20px);
+    padding: 25px 20px;
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: px;
     background-color: #5E34E8;
     border-radius: 16px;
     align-content: center;
     justify-content: space-between;
     gap: 15px;
-    padding: 15px;
-
 }
-
 .widgetContainer:nth-child(1),
 .widgetContainer:nth-child(3) {
     background-color: #5E34E8;

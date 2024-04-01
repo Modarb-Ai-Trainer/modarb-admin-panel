@@ -12,18 +12,19 @@ import Feedback from '../../../components/small/FeedbackWidget/FeedbackWidget'
 function Dashboard() {
 
     return (
-        <div className={styles.dashboardContainer}>
-            <div className={styles.dashTop} >
+        <div className={styles.dashboard}>
+             <div className={styles.dashboard_container}>
+            <div className={styles.dashboard_container_top} >
 
-                <div className={styles.dashLeft}>
-                    <div className={styles.dashWidgets}>
+                <div className={styles.dashboard_container_top_left}>
+                    <div className={styles.dashboard_container_top_left_dashWidgets}>
                         <Widgets />
 
                     </div>
-                    <div className={styles.dashChart}>
+                    <div className={styles.dashboard_container_top_left_dashChart}>
                         <UserChart />
                     </div>
-                    <div className={styles.dashSubCharts}>
+                    <div className={styles.dashboard_container_top_left_dashSubChart}>
                         <div className={styles.leftSubChart}>
                             <GoalChart />
                         </div>
@@ -31,35 +32,27 @@ function Dashboard() {
                             <PopularChart />
                         </div>
                     </div>
-
-
-
-                    {/* < HEAD/> */}
-
                 </div>
-                {/* <div className={styles.dashRight}>
-                <div className={styles.feedback}>
-                        <FeedbackWidget/>
 
-
-                </div> */}
-                <div className={styles.dashRight}>
-                    <div className={styles.feedback}>
+                <div className={styles.dashboard_container_top_dashRight}>
+                    <div className={styles.dashboard_container_top_dashRight_feedback}>
                         <Feedback />
                     </div>
-                    <div className={styles.downloads}>
+                    <div className={styles.dashboard_container_top_dashRight_downloads}>
                         <DownloadsChart />
                     </div>
                 </div>
             </div>
 
-            <div className={styles.dashAdminTable}>
+            <div className={styles.dashboard_container_dashAdminTable}>
                 <AdminTable />
             </div>
 
         </div>
 
 
+        </div>
+       
     )
 }
 
