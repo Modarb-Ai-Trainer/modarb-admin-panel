@@ -10,7 +10,7 @@ import { MdDelete } from "react-icons/md";
 interface Exercise {
   id: number;
   name: string;
-  avatar: string;
+  image: string;
   category: string;
   status: string;
 }
@@ -40,7 +40,7 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data }) => {
     ),
   };
 
-  const keysToDisplay: string[] = ['id', 'status', 'name', 'category'];
+  const keysToDisplay: string[] = ['id','image', 'status', 'name', 'category'];
 
   const columns: GridColDef[] = keysToDisplay.map((key) => ({
     field: key,
@@ -57,7 +57,15 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data }) => {
       );
     }
   });
-
+  columns.forEach((column) => {
+    if (column.field === 'image') {
+      column.renderCell = (params) => (
+        <div className={styles.cellImage_container}>
+            <img className={styles.cellImage} src={params.value} alt="avatar" />
+          </div>
+      );
+    }
+  });
   return (
     <div className={styles.dataView}>
       <ThemeProvider theme={darkTheme}>

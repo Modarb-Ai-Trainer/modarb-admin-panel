@@ -1,5 +1,21 @@
-.usercharts{
+.userchart{
+    display: flex;
     color: #ffff;
     background-color: #2D2D2D;
     border-radius: 15px;
+    width: 100%;
+    position: relative;
+
+    .userchart_container{
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+       
+
+        .userchart_container_chart{
+            width: 100%;
+            height: 100%;
+        }
+    }
 }

@@ -23,6 +23,14 @@
                 flex-direction: column;
                 justify-content: space-between;
                 gap: 20px;
+                .dashboard_container_top_left_dashChart{
+                    width: 100%;
+                    display: flex;
+                }
+                .dashboard_container_top_left_dashChart>*{
+                    display: flex;
+                    width: 100%;
+                }
 
                 .dashboard_container_top_left_dashWidgets{
                     display: flex;

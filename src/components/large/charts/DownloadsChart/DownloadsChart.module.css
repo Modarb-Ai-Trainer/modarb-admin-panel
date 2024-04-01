@@ -1,6 +1,6 @@
 .MainDownloadChart{
     position: relative;
-    background-color: var(--main-color);
+    background-color: #2D2D2D;
     width: 100%;
     display: flex;
     border-radius: 16px;

@@ -7,7 +7,7 @@
 
 .widgetContainer {
     width: calc(25% - 20px);
-    padding: 25px 20px;
+    padding: 22px 20px;
     display: flex;
     flex-direction: column;
     background-color: #5E34E8;
