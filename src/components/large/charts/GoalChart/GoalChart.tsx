@@ -25,23 +25,25 @@ const GoalChart = () => {
     },
   });
   return (
-    <ThemeProvider theme={darkModeTheme}>
-      <div className={styles.barchart}>
-        <BarChart
-          width={340}
-          height={250}
-          series={[
-            { data: pData, label: 'Goal Achievement', id: 'pvId', stack: 'total', color: "#6739FF" },
-            { data: uData, label: 'in progress', id: 'uvId', stack: 'total', color: "#B09FFF" },
-          ]}
-          xAxis={[{ data: xLabels, scaleType: 'band' }]}
-        />
-      </div>
-    </ThemeProvider>
+    <div className={styles.chartContainer}>
+       <ThemeProvider theme={darkModeTheme}>
+            <div className={styles.barchart}>
+                <div className={styles['chart-wrapper']}>
+                    <BarChart
+                        className={styles.chart}
+                        series={[
+                            { data: pData, label: 'Goal Achievement', id: 'pvId', stack: 'total', color: "#6739FF" },
+                            { data: uData, label: 'in progress', id: 'uvId', stack: 'total', color: "#B09FFF" },
+                        ]}
+                        xAxis={[{ data: xLabels, scaleType: 'band' }]}
+                    />
+                </div>
+            </div>
+        </ThemeProvider>
+    </div>
+   
   )
 }
-//kkk
-//
 
 
 export default GoalChart

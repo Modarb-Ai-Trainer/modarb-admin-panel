@@ -64,34 +64,27 @@ const PopularChart: React.FC = () => {
   });
 
   return (
-    <ThemeProvider theme={darkModeTheme}>
-
-          <div className={styles.popularPie}>
-            <PieChart
+    <div className={styles.popularChart}>
+      <ThemeProvider theme={darkModeTheme}>
+    <div className={styles.popularPie}>
+      <PieChart
         series={[{ data, innerRadius: 60 }]}
-        {...size}
-        label={({ dataEntry }: { dataEntry: DataEntry }) => ( 
-          <WhiteTextLabel x={dataEntry.pos.x} y={dataEntry.pos.y}>
-            {dataEntry.label}
-          </WhiteTextLabel>
-        )}
-        labelStyle={{
-          fill: 'white',
-        }}
-      >
-        <PieCenterLabel>Popular programs</PieCenterLabel>
-      </PieChart>
+        className={styles.chart}
+      />
       <style>
         {`
-          .recharts-pie-labels text {
-            fill: white !important;
-          }
-        `}
+        .recharts-pie-labels text {
+          fill: white !important;
+        }
+      `}
       </style>
     </div>
-    </ThemeProvider>
-  );
+  </ThemeProvider>
+    </div>
+    
+);
+
 };
-//
+
 
 export default PopularChart;
