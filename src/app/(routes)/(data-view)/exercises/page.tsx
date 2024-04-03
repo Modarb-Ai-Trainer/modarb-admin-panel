@@ -11,6 +11,7 @@ interface Exercise {
   avatar: string;
   category: string;
   status: string;
+  image: string;
 }
 async function page() {
 

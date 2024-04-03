@@ -15,18 +15,18 @@
         .dataView_dataTable_dataGrid {
             border: none !important;
             font-size: 13px;
+            width: 100%;
+            overflow-x: auto;
+          }
+          .dataView_dataTable_dataGrid .MuiDataGrid-colCell{
+           
           }
     }
 }
 
-
-
-
-
-  .dataTable .MuiDataGrid-cell {
-    color: white;
-  }
-
+.MuiDataGrid-cell{
+  color: #e20808;
+}
 
 
   .cellImage_container{

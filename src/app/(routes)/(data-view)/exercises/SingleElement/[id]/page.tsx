@@ -7,14 +7,12 @@ import img from '../../../../../../../public/images/img.png'
 import Link from 'next/link';
 import Button from '@/components/small/Button/Button';
 import { getExerciseById } from '@/app/Actions/Action';
-import { useParams } from 'next/navigation';
 
 interface Exercise {
   id: number;
   name: string;
-  avatar: string;
-  category: string;
   image: string;
+  category: string;
   status: string;
   reps: number;
   sets: number;
@@ -29,8 +27,7 @@ interface Exercise {
 const SingleElement = async ({ params, searchParams }: { params: { id: Number }; searchParams: { id: number } }) => {
   const exerciseId=params.id
   const exercise:Exercise = await getExerciseById(exerciseId);
-  console.log(exerciseId)
-
+  console.log(exercise.image)
   return (
     <div className={styles.SingleElement}>
       <div className={styles.SingleElement_Button}>
@@ -38,7 +35,8 @@ const SingleElement = async ({ params, searchParams }: { params: { id: Number };
       <div className={styles.singleElement_container}>
         <div className={styles.singleElement_container_top}>
           <div className={styles.singleElement_container_top_left}>
-            <Image src={exercise.image} alt='image' layout='fill' />
+          <Image key={exercise.name} src={`${exercise.image}?timestamp=${new Date().getTime()}`} alt={exercise.name} layout='fill' />
+
           </div>
           <div className={styles.singleElement_container_top_right}>
             <SingleList  id={exercise.id}  name={exercise.name} category={exercise.category} sets={exercise.sets}  reps={exercise.reps} duration={exercise.duration}   />

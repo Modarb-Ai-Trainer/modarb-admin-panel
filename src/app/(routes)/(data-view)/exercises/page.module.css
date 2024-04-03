@@ -34,6 +34,15 @@
         .dataView_container_topConatainer .add_btn:hover{
             background-color: rgba(94, 52, 232, 1);
         }
-        
+        .dataView_cotainer_bottomContainer{
+            width: 100%;
+            position: relative;
+            display: flex;
+        }
+        .dataView_cotainer_bottomContainer>*{
+            display: flex;
+            width: 100%;
+            position: relative;
+        }
     }
 }
