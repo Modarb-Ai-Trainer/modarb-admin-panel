@@ -1,9 +1,10 @@
+
 .SideDrawer{
   display: flex;
-  position: relative;
-  min-height: 100vh;
+  height: 100%;
   width: 150px;
   position: relative;
+ 
 
   .SideDrawer_sideContainer{
     background-color: var(--main-color);
