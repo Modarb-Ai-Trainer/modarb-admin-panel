@@ -2,11 +2,15 @@ import React from 'react'
 import styles from './page.module.css';
 import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
-function page() {
+import adminApi from '../../api/create-admin';
+async function page() {
+  const data2 = await adminApi.testLogin();
+  console.log(data2);
   return (
     <div className={styles.createAdmin}>
       <section className={styles.createAdmin__top}>
-        <div className={styles.createAdmin__top__title}>Create an Admin</div>
+        <div className={styles.createAdmin__top__title}>Create an Admin
+        </div>
       </section>
       <section className={styles.createAdmin__bottom}>
         <form className={styles.createAdmin__form}>
