@@ -1,11 +1,19 @@
-import React from 'react'
+'use client';
+import React, { useState } from 'react'
 import styles from './page.module.css';
 import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
 import adminApi from '../../api/create-admin';
-async function page() {
-  const data2 = await adminApi.testLogin();
-  console.log(data2);
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+
+function page() {
+  type ValuePiece = Date | null | any;
+
+  type Value = ValuePiece | [ValuePiece, ValuePiece];
+  const [selectedDate, setSelectedDate] = useState<Value>(new Date() || null);
+  console.log(selectedDate)
   return (
     <div className={styles.createAdmin}>
       <section className={styles.createAdmin__top}>
@@ -17,6 +25,8 @@ async function page() {
           <Input PlaceHolder='First Name' type='text' size='small' />
           <Input PlaceHolder='Last Name' type='text' size='small' />
           <Input PlaceHolder='Creator' type='text' size='small' />
+          <Input PlaceHolder='Name' type='text' size='large' />
+          <Input PlaceHolder='Email' type='email' size='large' />
           <Input PlaceHolder='Email' type='email' size='large' />
 
           <Input PlaceHolder='Password' type='password' size='large' />
@@ -74,6 +84,14 @@ async function page() {
               </div>
             </fieldset>
           </section>
+          <div>
+            <DatePicker selected={new Date(selectedDate)}
+              placeholderText='Date of Birth'
+              onChange={(date) => (date && setSelectedDate(date))}
+              dateFormat='yyyy/MM/dd'
+              maxDate={new Date()}
+            />
+          </div>
           <div className={styles.createAdmin__form__wrapper}>
             <Button type='primary' size='full'>Submit</Button>
           </div>
