@@ -4,19 +4,16 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Link from 'next/link';
 import styles from './DataViewTable.module.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { handleDelete } from '@/app/Actions/Action';
 import { MdDelete } from "react-icons/md";
 
-interface Exercise {
-  id: number;
-  name: string;
-  image: string;
-  category: string;
-  status: string;
+interface DataRow {
+  [key: string]: any;
 }
 
 interface DataViewTableProps {
-  data: Exercise[];
+  data: DataRow[];
+  keysToDisplay: string[];
+  onDelete?: (id: number) => void;
 }
 
 const darkTheme = createTheme({
@@ -25,8 +22,8 @@ const darkTheme = createTheme({
   },
 });
 
-const DataViewTable: React.FC<DataViewTableProps> = ({ data }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete }) => {
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [forceRerender, setForceRerender] = useState<boolean>(false);
 
   useEffect(() => {
@@ -50,37 +47,31 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data }) => {
         <Link href={`/exercises/SingleElement/${params.row.id}`} passHref className={styles.viewButton}>
           view
         </Link>
-        <div className={styles.deleteButton} onClick={() => handleDelete(params.row.id)}><MdDelete size={18} /></div>
+        {onDelete && (
+          <div className={styles.deleteButton} onClick={() => onDelete(params.row.id)}><MdDelete size={18} /></div>
+        )}
       </div>
     ),
   };
-
-  const keysToDisplay: string[] = ['id','image', 'status', 'name', 'category'];
 
   const columns: GridColDef[] = keysToDisplay.map((key) => ({
     field: key,
     headerName: key.toUpperCase(),
     flex: 1,
+    renderCell: (params) => {
+      if (key === 'image') {
+        return (
+          <div className={styles.cellImage_container}>
+            <img className={styles.cellImage} src={params.value} alt="avatar" />
+          </div>
+        );
+      } else {
+        return <div>{params.value}</div>;
+      }
+    },
   }));
 
-  columns.forEach((column) => {
-    if (column.field === 'status') {
-      column.renderCell = (params) => (
-        <div className={`${styles.cellWithStatus} ${params.value}`}>
-          {params.value}
-        </div>
-      );
-    }
-  });
-  columns.forEach((column) => {
-    if (column.field === 'image') {
-      column.renderCell = (params) => (
-        <div className={styles.cellImage_container}>
-          <img className={styles.cellImage} src={params.value} alt="avatar" />
-        </div>
-      );
-    }
-  });
+  const gridColumns = onDelete ? [...columns, actionColumn] : columns;
 
   return (
     <div className={styles.dataView}>
@@ -90,10 +81,9 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data }) => {
             key={forceRerender.toString()} 
             className={styles.dataView_dataTable_dataGrid}
             rows={data}
-            columns={[...columns, actionColumn]}
+            columns={gridColumns}
             checkboxSelection
             autoHeight
-           
           />
         </div>
       </ThemeProvider>
