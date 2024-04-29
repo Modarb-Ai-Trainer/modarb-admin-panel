@@ -1,0 +1,21 @@
+.errorWrapper {
+    color: white;
+    padding: 1.3rem;
+    width: 95%;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1rem 0.2rem;
+    border-radius: 3px;
+}
+
+.success {
+    background-color: green;
+}
+
+.failed {
+    background-color: #a93131;
+}
+
+.progress {
+    background-color: navy;
+}

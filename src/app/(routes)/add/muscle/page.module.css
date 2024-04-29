@@ -1,4 +1,4 @@
-.login {
+.muscle {
     width: 100%;
     height: 100%;
     display: flex;
@@ -6,18 +6,11 @@
     justify-content: center;
     flex-direction: column;
 
-    .loginErrorWrapper {
-        width: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+    .muscle__form {
 
-    .login__form {
         width: 60%;
         background-color: var(--main-color);
-        height: 30rem;
+        height: 20rem;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -26,7 +19,7 @@
 
         @media(max-width:600px) {
             width: 75%;
-            height: 40rem;
+            height: 25rem;
         }
 
         @media(max-width:270px) {
@@ -34,5 +27,4 @@
             height: 50rem;
         }
     }
-
 }

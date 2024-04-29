@@ -1,0 +1,47 @@
+.workout {
+    background-color: red;
+    width: 98%;
+    margin: 3rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+
+    .workoutLeft {
+        flex: 4;
+    }
+
+    .workouRight {
+        flex: 5;
+
+        .workouRightWeeksList {
+            display: flex;
+            flex-direction: column;
+
+            .workouRightWeeksItem {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin-bottom: 1rem;
+
+                .workouRightWeeksItemTop {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0.75rem;
+                    background-color: green;
+
+                }
+
+                .workouRightWeeksItemBottom {
+                    margin: 0.5rem 1.3rem;
+
+                    .workouRightWeeksItemBottomItem {
+                        display: flex;
+                        justify-content: space-evenly;
+                        margin-bottom: 1rem;
+                        background-color: navy;
+                    }
+                }
+            }
+        }
+    }
+}
