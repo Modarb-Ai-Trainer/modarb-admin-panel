@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './page.module.css';
 import Link from 'next/link';
-import { getData, handleDelete } from '../../../Actions/Action'; 
+import { getData, handleDelete } from '../../../Actions/ExercisesAction'; 
 import DataViewTable from '@/components/large/DataViewTable/DataViewTable';
 import Button from '@/components/small/Button/Button';
 
@@ -15,7 +15,9 @@ interface Exercise {
 }
 
 async function page() {
-  const exercises: Exercise[] = await getData();
+  const {data}= await getData();
+  console.log(data)
+
 
   return (
     <div className={styles.dataView}>
@@ -27,8 +29,21 @@ async function page() {
 
        <div className={styles.dataView_cotainer_bottomContainer}>
           <DataViewTable
-            data={exercises}
-            keysToDisplay={['id','image', 'status', 'name', 'category']}
+            data={data}
+            keysToDisplay={[
+              'id',
+              'name',
+              'category',
+              'duration',
+              'expectedDurationRange',
+              'reps',
+              'sets',
+              'instructions',
+              'benefits',
+              'targetMuscles', 
+              'equipments',
+              'media'
+            ]}
             onDelete={handleDelete} 
           />
        </div>

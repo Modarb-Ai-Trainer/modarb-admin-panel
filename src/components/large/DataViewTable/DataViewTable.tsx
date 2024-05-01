@@ -23,6 +23,8 @@ const darkTheme = createTheme({
 });
 
 const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete }) => {
+
+  // for table responsiveness
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [forceRerender, setForceRerender] = useState<boolean>(false);
 
@@ -39,6 +41,9 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
     };
   }, []);
 
+
+
+
   const actionColumn: GridColDef = {
     field: 'action',
     headerName: 'Action',
@@ -54,17 +59,38 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
     ),
   };
 
+
+
+
+  const renderArrayCell = (value: any[]) => {
+    return value.map((item: any, index: number) => (
+      <div key={index}>{item}</div>
+    ));
+  };
+
+  const renderExpectedDurationRange = (value: { min: number; max: number }) => {
+    return `${value.min} - ${value.max}`;
+  };
+  
   const columns: GridColDef[] = keysToDisplay.map((key) => ({
     field: key,
-    headerName: key.toUpperCase(),
+    headerName: key,
     flex: 1,
     renderCell: (params) => {
-      if (key === 'image') {
-        return (
-          <div className={styles.cellImage_container}>
-            <img className={styles.cellImage} src={params.value} alt="avatar" />
-          </div>
-        );
+      if (Array.isArray(params.value)) {
+        return renderArrayCell(params.value);
+      } else if (typeof params.value === 'object') {
+        if (key === 'expectedDurationRange') {
+          return renderExpectedDurationRange(params.value);
+        } else if (key === 'media' && params.value.type === 'image') {
+          return (
+            <div className={styles.cellImage_container}>
+              <img className={styles.cellImage} src={params.value.url} alt="media" />
+            </div>
+          );
+        } else {
+          return <div>{JSON.stringify(params.value)}</div>;
+        }
       } else {
         return <div>{params.value}</div>;
       }

@@ -1,59 +1,43 @@
 import React from 'react'
 import styles from './page.module.css';
-import Image from 'next/image';
-import SingleList from '@/components/small/SingleList/SingleList';
-import ContainerList from '@/components/small/ContainerList/ContainerList';
-import img from '../../../../../../../public/images/img.png'
-import Link from 'next/link';
-import Button from '@/components/small/Button/Button';
-import { getExerciseById } from '@/app/Actions/Action';
+import { getExerciseById } from '@/app/Actions/ExercisesAction';
+import DataViewTable from '@/components/large/DataViewTable/DataViewTable';
+import { getEquipments } from '@/app/Actions/EquipmentAction';
+import SingleElementContainer from '@/components/small/SingleElementContainer/SingleElementContainer';
 
-interface Exercise {
-  id: number;
-  name: string;
-  image: string;
-  category: string;
-  status: string;
-  reps: number;
-  sets: number;
-  duration: number;
-  targetMuscles:String,
-  benefits:string,
-  equipment: String,
-  instructions: String,
 
-}
 
 const SingleElement = async ({ params, searchParams }: { params: { id: Number }; searchParams: { id: number } }) => {
   const exerciseId=params.id
-  const exercise:Exercise = await getExerciseById(exerciseId);
-  console.log(exercise.image)
+  const {data :exercise} = await getExerciseById(exerciseId);
+  console.log(exercise)
+
+
+  const  { data: equipmentData } =await getEquipments(exercise.equipment);
+  // console.log('eq',equipmentData)
   return (
-    <div className={styles.SingleElement}>
-      <div className={styles.SingleElement_Button}>
-      <Link href='/add/exercises'><Button children='Update' size='small'  type="popular" /></Link>      </div>
-      <div className={styles.singleElement_container}>
-        <div className={styles.singleElement_container_top}>
-          <div className={styles.singleElement_container_top_left}>
-          <Image key={exercise.name} src={`${exercise.image}?timestamp=${new Date().getTime()}`} alt={exercise.name} layout='fill' />
-
-          </div>
-          <div className={styles.singleElement_container_top_right}>
-            <SingleList  id={exercise.id}  name={exercise.name} category={exercise.category} sets={exercise.sets}  reps={exercise.reps} duration={exercise.duration}   />
-          </div> 
-        </div>
-
-
-        
-        <div className={styles.singleElement_container_bottom}>
-          <ContainerList name='target muscles' value2='leg' value3='back' primary='primary:' secondary='secondary:'/>
-          <ContainerList name='Equipment' value2={exercise.equipment}/>
-          <ContainerList name='Instructions' value2={exercise.instructions}/>
-          <ContainerList name='Benefits' value2={exercise.benefits}/>
-        </div> 
+   <div className={styles.ElementContainer}>
+    <SingleElementContainer exercise={exercise}/>
+     <DataViewTable
+       data={[exercise]}
+       keysToDisplay={[
+        'instructions',
+        'benefits',
+      ]}
+      />
+    <div>
+    <h1>Equipments</h1>
+      <DataViewTable
+       data={equipmentData}
+       keysToDisplay={[
+        'id',
+        'name',
+        'image'
+      ]}
       
-      </div> 
-
+      />
+    </div>
+      
     </div>
   )
 }

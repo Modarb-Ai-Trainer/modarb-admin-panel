@@ -1,0 +1,57 @@
+.SingleElement{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-top: 15px;
+
+    .SingleElement_Button{
+        align-items: flex-end;
+        text-align: right;
+
+    }
+   
+
+    .singleElement_container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 30px;
+
+
+
+        .singleElement_container_top{
+            background-color: var(--main-color);
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:flex-start;
+            align-items: center;
+            gap: 60px;
+            border-radius: 15px;
+            padding: 20px 20px;
+
+            .singleElement_container_top_left{
+                position: relative;
+                width: 500px;
+                height: 275px;
+                border-radius: 50px;
+            }
+           
+           
+        }
+
+        .singleElement_container_bottom{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+             align-items: flex-start;
+             gap: 30px;
+        }
+
+    }
+}
