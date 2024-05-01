@@ -5,8 +5,8 @@ import Widgets from '../../../components/small/widgets/Widgets'
 import GoalChart from '../../../components/large/charts/GoalChart/GoalChart'
 import UserChart from '../../../components/large/charts/UserChart/UserChart'
 import PopularChart from '../../../components/large/charts/PopularChart/PopularChart'
-import AdminTable from '../../../components/large/AdminTable/AdminTable'
 import Feedback from '../../../components/small/FeedbackWidget/FeedbackWidget'
+import Admins from '../admins/page'
 
 
 function Dashboard() {
@@ -45,7 +45,7 @@ function Dashboard() {
             </div>
 
             <div className={styles.dashboard_container_dashAdminTable}>
-                <AdminTable />
+                <Admins/>
             </div>
 
         </div>
