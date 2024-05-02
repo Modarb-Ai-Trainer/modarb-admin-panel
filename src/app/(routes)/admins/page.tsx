@@ -1,4 +1,4 @@
-import { getAdmins } from '@/app/Actions/AdminsAction'
+import { getAdmins } from '@/app/Actions/GetActions'
 import DataViewTable from '@/components/large/DataViewTable/DataViewTable'
 import React from 'react'
 
