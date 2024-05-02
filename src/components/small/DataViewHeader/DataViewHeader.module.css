@@ -1,0 +1,23 @@
+.DataViewHeader{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+
+
+    .DataViewHeader h1{
+        font-size: 24px;
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+    
+    
+
+
+ 
+}
+
+.DataViewHeader .add_btn:hover{
+    background-color: rgba(94, 52, 232, 1);
+}

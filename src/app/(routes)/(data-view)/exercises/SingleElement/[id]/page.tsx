@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './page.module.css';
 import { getExerciseById } from '@/app/Actions/ExercisesAction';
 import DataViewTable from '@/components/large/DataViewTable/DataViewTable';
-import { getEquipments } from '@/app/Actions/EquipmentAction';
+import { getEquipmentsbyId } from '@/app/Actions/EquipmentAction';
 import SingleElementContainer from '@/components/small/SingleElementContainer/SingleElementContainer';
 
 
@@ -13,7 +13,7 @@ const SingleElement = async ({ params, searchParams }: { params: { id: Number };
   console.log(exercise)
 
 
-  const  { data: equipmentData } =await getEquipments(exercise.equipment);
+  const  { data: equipmentData } =await getEquipmentsbyId(exercise.equipment);
   // console.log('eq',equipmentData)
   return (
    <div className={styles.ElementContainer}>

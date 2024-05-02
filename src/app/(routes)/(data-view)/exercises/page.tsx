@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getData, handleDelete } from '../../../Actions/ExercisesAction'; 
 import DataViewTable from '@/components/large/DataViewTable/DataViewTable';
 import Button from '@/components/small/Button/Button';
+import DataViewHeader from '@/components/small/DataViewHeader/DataViewHeader';
 
 interface Exercise {
   id: number;
@@ -23,8 +24,11 @@ async function page() {
     <div className={styles.dataView}>
       <div className={styles.dataView_cotainer}>
         <div className={styles.dataView_container_topConatainer}>
-          <h1>Exercises</h1>
-          <Link href='/add/exercises'><Button children='Add Exercise' size='meduim'  type="popular" /></Link>
+          <DataViewHeader
+          title='Exercises'
+          path='./add/exercises'
+          buttonTitle='Add Exercise'
+          />
         </div>
 
        <div className={styles.dataView_cotainer_bottomContainer}>
