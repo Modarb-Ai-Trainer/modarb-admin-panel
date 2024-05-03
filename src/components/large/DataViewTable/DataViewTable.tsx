@@ -24,6 +24,7 @@ const darkTheme = createTheme({
 
 const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete }) => {
 
+
   // for table responsiveness
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [forceRerender, setForceRerender] = useState<boolean>(false);

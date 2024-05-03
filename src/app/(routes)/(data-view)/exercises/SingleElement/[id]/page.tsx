@@ -8,16 +8,36 @@ import { getMusclesById } from '@/app/Actions/GetActions';
 
 
 
-const SingleElement = async ({ params, searchParams }: { params: { id: Number }; searchParams: { id: number } }) => {
+const SingleElement = async ({ params, searchParams }: { params: { id: String }; searchParams: { id: String } }) => {
   const exerciseId=params.id
   const {data :exercise} = await getExerciseById(exerciseId);
-  console.log(exercise)
+  // console.log(exercise)
 
 
-  const  { data: equipmentData } =await getEquipmentById(exercise.equipment);
-  const {data:muscles}=await getMusclesById(exercise.targetMuscles)
-  console.log('muscles',muscles)
-  // console.log('eq',equipmentData)
+
+  const {data:primarymuscles}=await getMusclesById(exercise.targetMuscles?.primary)
+  // console.log('primary',primarymuscles)
+  const {data:secondarymuscles}=await getMusclesById(exercise.targetMuscles?.secondary)
+  // console.log('secondary',secondarymuscles)
+
+  const musclesArray = [];
+  if (primarymuscles) {
+      musclesArray.push(primarymuscles);
+  }
+  if (secondarymuscles) {
+      musclesArray.push(secondarymuscles);
+  }
+
+
+  const equipmentData = [];
+  for (const equipmentId of exercise.equipments) {
+    const { data: equipment } = await getEquipmentById(equipmentId);
+    equipmentData.push(equipment);
+  }
+  // console.log('Equipment Data:', equipmentData);
+
+
+
   return (
    <div className={styles.ElementContainer}>
     <SingleElementContainer exercise={exercise}/>
@@ -28,6 +48,7 @@ const SingleElement = async ({ params, searchParams }: { params: { id: Number };
         'benefits',
       ]}
       />
+
     <div>
     <h1>Equipments</h1>
       <DataViewTable
@@ -40,11 +61,11 @@ const SingleElement = async ({ params, searchParams }: { params: { id: Number };
       
       />
     </div>
-
+ 
     <div>
     <h1>Target Muscles</h1>
       <DataViewTable
-       data={muscles}
+       data={musclesArray}
        keysToDisplay={[
         'id',
         'name',
@@ -53,6 +74,8 @@ const SingleElement = async ({ params, searchParams }: { params: { id: Number };
       
       />
     </div>
+   
+ 
       
     </div>
   )
