@@ -1,7 +1,7 @@
 'use server'
 import { revalidateTag } from "next/cache";
 
-const authToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmNkN2Y1YjlhY2U5MTc2ZTIyNGUxNSIsImVtYWlsIjoic3VwZXJAYXBwLmNvbSIsIm5hbWUiOiJTdXBlciBBZG1pbiIsInR5cGUiOiJhZG1pbiIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzE0NzY5OTI4LCJleHAiOjE3MTQ4NTYzMjh9.6YCrfYuFY7qQPU2YdlqCi_QBwD2fAxqBWry_uwTM7lY';
+const authToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmNkN2Y1YjlhY2U5MTc2ZTIyNGUxNSIsImVtYWlsIjoic3VwZXJAYXBwLmNvbSIsIm5hbWUiOiJTdXBlciBBZG1pbiIsInR5cGUiOiJhZG1pbiIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzE0OTUzNTcxLCJleHAiOjE3MTUwMzk5NzF9.bHu6Dy5bpGA37Su3-tXNoBM7Aq6aKYHkN0BlwXUtjJ0';
 
 interface RequestOptions {
     headers?: Record<string, string>;
@@ -32,6 +32,16 @@ export async function fetchData(url: string, options: RequestOptions = {}) {
     return res.json();
 }
 
+export async function getWorkouts() {
+    const url: string = 'http://localhost:4000/api/v1/console/workouts';
+    const data = await fetchData(url, {
+         cache: 'no-cache', 
+         next: {
+             tags: ['Workouts'] 
+            } 
+        });
+    return data;
+}
 
 
 

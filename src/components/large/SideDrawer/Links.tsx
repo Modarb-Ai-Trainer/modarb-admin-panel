@@ -7,6 +7,7 @@ import { GiProgression } from "react-icons/gi";
 import { RiAdminFill } from "react-icons/ri";
 import { SiOpenaigym } from "react-icons/si";
 import { GiMuscleUp } from "react-icons/gi";
+import { FaDumbbell } from "react-icons/fa";
 
 
 export const links = [
@@ -24,43 +25,49 @@ export const links = [
         icon: <HiUsers  size={16} />
     },
     {
-        id: 3,
+        id:3 ,
+        title:"Workouts",
+        path:'/Workouts',
+        icon:<FaDumbbell/>
+    },
+    {
+        id: 4,
         title: "Exercises",
         path: "/exercises",
         icon: <LiaDumbbellSolid size={16}  />,
     },
     {
-        id: 4,
+        id: 5,
         title: "Equipments",
         path: "/Equipments",
         icon: <SiOpenaigym size={16}  />,
     },
     {
-        id: 5,
+        id: 6,
         title: "Muscles",
         path: "/Muscles",
         icon: <GiMuscleUp size={16}  />,
     },
     {
-        id: 6,
+        id: 7,
         title: "Meals",
         path: "/meals",
         icon: <GiKnifeFork  size={16} />,
     },
     {
-        id: 7,
+        id: 8,
         title: "Programs",
         path: "/programs",
         icon: <HiClipboardList size={16}  />,
     },
     {
-        id: 8,
+        id: 9,
         title: "Analytics",
         path: "/analytics",
         icon: <GiProgression size={18} />,
     },
     {
-        id: 9,
+        id: 10,
         title: "Admins",
         path: "/admins",
         icon: <RiAdminFill size={16}  />,
