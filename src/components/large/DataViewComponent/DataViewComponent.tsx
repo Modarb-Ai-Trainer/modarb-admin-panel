@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './DataViewComponent.module.css';
-import { getData, handleDelete } from '../../../app/Actions/ExercisesAction'; 
 import DataViewTable from '@/components/large/DataViewTable/DataViewTable';
 import DataViewHeader from '@/components/small/DataViewHeader/DataViewHeader';
 
@@ -12,9 +11,10 @@ onDelete?: (id: string | number) => void;
 title: string; 
 path: string; 
 buttonTitle: string;
+viewPath?:string;
 }
 
-const DataViewComponent:React.FC<DataProps>  =  ({data,keysToDisplay,onDelete,title,path,buttonTitle}) =>  {
+const DataViewComponent:React.FC<DataProps>  =  ({data,keysToDisplay,onDelete,title,path,buttonTitle,viewPath}) =>  {
   
 
 
@@ -34,6 +34,7 @@ const DataViewComponent:React.FC<DataProps>  =  ({data,keysToDisplay,onDelete,ti
             data={data}
             keysToDisplay={keysToDisplay}
             onDelete={onDelete} 
+            viewPath={viewPath}
           />
        </div>
 

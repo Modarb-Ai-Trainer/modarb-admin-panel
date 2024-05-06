@@ -14,6 +14,7 @@ interface DataViewTableProps {
   data: DataRow[];
   keysToDisplay: string[];
   onDelete?: (id: number) => void;
+  viewPath?: string;
 }
 
 const darkTheme = createTheme({
@@ -22,7 +23,7 @@ const darkTheme = createTheme({
   },
 });
 
-const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete }) => {
+const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete ,viewPath }) => {
 
 
   // for table responsiveness
@@ -50,13 +51,15 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
     headerName: 'Action',
     renderCell: (params) => (
       <div className={styles.cellAction}>
-        <Link href={`/exercises/SingleElement/${params.row.id}`} passHref className={styles.viewButton}>
+      {viewPath ? ( 
+        <Link href={`${viewPath}/${params.row.id}`} passHref className={styles.viewButton}>
           view
         </Link>
-        {onDelete && (
-          <div className={styles.deleteButton} onClick={() => onDelete(params.row.id)}><MdDelete size={18} /></div>
-        )}
-      </div>
+      ) : null}
+      {onDelete && (
+        <div className={styles.deleteButton} onClick={() => onDelete(params.row.id)}><MdDelete size={18} /></div>
+      )}
+    </div>
     ),
   };
 

@@ -1,3 +1,4 @@
+import { MusclesDelete } from '@/app/Actions/DeleteActions'
 import { getExerciseById, getMuscles, getMusclesById } from '@/app/Actions/GetActions'
 import DataViewComponent from '@/components/large/DataViewComponent/DataViewComponent'
 import React from 'react'
@@ -25,6 +26,7 @@ const {data:muscles} =await getMuscles()
         title='Muscles'
         path='./add/muscle'
         buttonTitle='Add muscle'
+        onDelete={MusclesDelete}
         />
     </div>
     

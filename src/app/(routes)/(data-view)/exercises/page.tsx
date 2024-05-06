@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './page.module.css';
-import { getExercises,handleDelete} from '../../../Actions/GetActions'; 
+import { getExercises} from '../../../Actions/GetActions'; 
 import DataViewComponent from '@/components/large/DataViewComponent/DataViewComponent';
+import { ExerciseDelete } from '@/app/Actions/DeleteActions';
 
 
 
@@ -30,7 +31,9 @@ async function page() {
       title='Exercises'
       path='./add/exercises'
       buttonTitle='Add Exercise'
-      onDelete={handleDelete}
+      onDelete={ExerciseDelete}
+      viewPath='/exercises/SingleElement'
+      
       /> 
     </div>
   )

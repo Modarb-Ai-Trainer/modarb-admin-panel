@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './page.module.css'
 import DataViewComponent from '@/components/large/DataViewComponent/DataViewComponent'
 import { getWorkouts } from '@/app/Actions/GetActions'
+import { WorkoutDelete } from '@/app/Actions/DeleteActions'
 const Workouts =async () => {
     const {data:Workouts}=await getWorkouts()
     // console.log(Workouts)
@@ -24,6 +25,7 @@ const Workouts =async () => {
         title='Workouts Programs'
         path='./add/Workout'
         buttonTitle='Add Program'
+        onDelete={WorkoutDelete}
         />
     </div>
   )

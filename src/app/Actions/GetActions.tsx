@@ -129,14 +129,3 @@ export async function getAdmins() {
 
 
 
-//dummy function 
-export async function handleDelete(exerciseId:any) {
-    
-    const res = await fetch(`https://660331ba2393662c31ceb407.mockapi.io/api/v1/exercises/exercises/${exerciseId}`,{
-        method:'DELETE'
-    });
-    revalidateTag('exercises'); 
-    return  res.json();
-
-
-}
