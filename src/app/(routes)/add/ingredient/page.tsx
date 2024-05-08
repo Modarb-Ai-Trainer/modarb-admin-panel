@@ -47,6 +47,7 @@ function page() {
             setSuccess(true);
             return;
         }
+        setSuccess(false);
         res.error.map((err: any) => (
             setMessages([{ message: err }])
         ))

@@ -1,4 +1,4 @@
-.muscle {
+.ingredient {
     width: 100%;
     height: 100%;
     display: flex;
@@ -6,7 +6,7 @@
     justify-content: center;
     flex-direction: column;
 
-    .muscle__title {
+    .ingredient__title {
         font-size: 3rem;
         margin-bottom: 1.2rem;
         text-decoration: underline;
@@ -14,7 +14,7 @@
         color: #d9d1d1;
     }
 
-    .muscle__form {
+    .ingredient__form {
         width: 60%;
         background-color: var(--main-color);
         display: flex;
@@ -25,14 +25,14 @@
         padding: 3rem;
         margin-bottom: 6rem;
 
-        .muscle__form__input {
+        .ingredient__form__input {
             outline: none;
             padding: 1rem;
             margin: 1rem 0;
             width: 100%;
         }
 
-        .muscle__form__button {
+        .ingredient__form__button {
             width: 50%;
             background-color: navy;
             color: white;
@@ -46,7 +46,7 @@
             margin: 1rem 0;
         }
 
-        .muscle__form__button:hover {
+        .ingredient__form__button:hover {
 
             background-color: white;
             color: navy;

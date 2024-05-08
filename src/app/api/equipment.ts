@@ -1,10 +1,12 @@
-const err = {
-    status: 500,
-    error: ["Something went wrong, please check your internet connection."]
+import admin from "./admin";
+import customErrors from './customErrors'
+interface ingTypes {
+    name: string,
+    image: string
 }
 export default {
-    add: async (name: string, image: string) => {
-        console.log(process.env.TOKEN);
+    add: async (data: ingTypes) => {
+        console.log(process.env.TOKEN, admin.token);
         try {
             const res = await fetch(`${process.env.URI}/api/v1/console/equipments`, {
                 method: "POST",
@@ -13,19 +15,20 @@ export default {
                 credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${process.env.TOKEN}`
+                    "Authorization": `Bearer ${admin.token}`
 
                 },
-                body: JSON.stringify({ name, image }),
+                body: JSON.stringify(data),
             });
             console.log(res);
-            if (!res.ok) return err;
+            if (res.status === 422) return customErrors.invalidData;
+            if (res.status === 401) return customErrors.unauthorized;
             return res.json();
         } catch {
-            return err;
+            return customErrors.general;
         }
     },
-    update: async (id: string, name: string, image: string) => {
+    update: async (id: string, data: ingTypes) => {
         try {
             const res = await fetch(`${process.env.URI}/api/v1/console/equipments/${id}`, {
                 method: "PATCH",
@@ -34,15 +37,16 @@ export default {
                 credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${process.env.TOKEN}`
+                    "Authorization": `Bearer ${admin.token}`
                 },
-                body: JSON.stringify({ name, image }),
+                body: JSON.stringify(data),
             });
-            console.log(res);
-            if (!res.ok) return err;
+            console.log(id, data);
+            if (res.status === 422) return customErrors.invalidData;
+            if (res.status === 401) return customErrors.unauthorized;
             return res.json();
         } catch {
-            return err;
+            return customErrors.general;
         }
     },
     get: async (id: string) => {
@@ -54,14 +58,15 @@ export default {
                 credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${process.env.TOKEN}`
+                    "Authorization": `Bearer ${admin.token}`
                 }
             });
             console.log(res);
-            if (!res.ok) return err;
+            if (res.status === 422) return customErrors.invalidData;
+            if (res.status === 401) return customErrors.unauthorized;
             return res.json();
         } catch {
-            return err;
+            return customErrors.general;
         }
     }
 }

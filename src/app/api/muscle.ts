@@ -3,20 +3,13 @@ import customErrors from './customErrors'
 
 interface ingTypes {
     name: string,
-    serving_size: number,
-    servings_count: number,
-    serving_size_unit: string,
-    servings_count_unit: string,
-    calories: number,
-    carbs: number,
-    proteins: number,
-    fats: number
+    image: string
 }
 export default {
     add: async (data: ingTypes) => {
         console.log(process.env.TOKEN, admin.token);
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/ingredients`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/muscles`, {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
@@ -38,7 +31,7 @@ export default {
     },
     update: async (id: string, data: ingTypes) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/ingredients/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/muscles/${id}`, {
                 method: "PATCH",
                 mode: "cors",
                 cache: "no-cache",
@@ -59,7 +52,7 @@ export default {
     },
     get: async (id: string) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/ingredients/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/muscles/${id}`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
