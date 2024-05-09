@@ -23,6 +23,7 @@ export default {
             console.log(res);
             if (res.status === 422) return customErrors.invalidData;
             if (res.status === 401) return customErrors.unauthorized;
+            if (!res.ok) return customErrors.general;
             return res.json();
         } catch {
             return customErrors.general;
@@ -44,6 +45,7 @@ export default {
             console.log(id, data);
             if (res.status === 422) return customErrors.invalidData;
             if (res.status === 401) return customErrors.unauthorized;
+            if (!res.ok) return customErrors.general;
             return res.json();
         } catch {
             return customErrors.general;
@@ -64,6 +66,7 @@ export default {
             console.log(res);
             if (res.status === 422) return customErrors.invalidData;
             if (res.status === 401) return customErrors.unauthorized;
+            if (!res.ok) return customErrors.general;
             return res.json();
         } catch {
             return customErrors.general;

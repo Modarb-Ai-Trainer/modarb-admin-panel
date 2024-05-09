@@ -16,7 +16,7 @@ export default {
     add: async (data: ingTypes) => {
         console.log(process.env.TOKEN, admin.token);
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/ingredients`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/meals`, {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
@@ -39,7 +39,7 @@ export default {
     },
     update: async (id: string, data: ingTypes) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/ingredients/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/meals/${id}`, {
                 method: "PATCH",
                 mode: "cors",
                 cache: "no-cache",
@@ -62,7 +62,7 @@ export default {
     },
     get: async (id: string) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/ingredients/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/meals/${id}`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",

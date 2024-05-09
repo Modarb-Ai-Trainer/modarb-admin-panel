@@ -1,11 +1,10 @@
-const URI = 'https://modarb-backend.onrender.com/api/v1/console/auth/login';
 
 const testLogin = async (email: any, password: any) => {
     const cred = {
         email: email, password: password
     }
     console.log(cred);
-    const res = await fetch(URI, {
+    const res = await fetch(`${process.env.URI}/api/v1/console/auth/login`, {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
