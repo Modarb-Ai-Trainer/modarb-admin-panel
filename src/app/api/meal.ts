@@ -3,14 +3,12 @@ import customErrors from './customErrors'
 
 interface ingTypes {
     name: string,
-    serving_size: number,
-    servings_count: number,
-    serving_size_unit: string,
-    servings_count_unit: string,
     calories: number,
     carbs: number,
     proteins: number,
-    fats: number
+    fats: number,
+    type: string,
+    ingredients: string[]
 }
 export default {
     add: async (data: ingTypes) => {

@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './page.module.css'
 import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
-import ingredient from '../../../api/ingredient';
-import meal from '../../../api/meal';
+import ingredient from '../../../../api/ingredient';
+import meal from '../../../../api/meal';
 import { useParams, useRouter } from 'next/navigation'
 import ErrorWrapper from '@/components/small/ErrorWrapper/ErrorWrapper';
 import FetchingWrapper from '@/components/large/FetchingWrapper/FetchingWrapper';
@@ -14,15 +14,18 @@ import { FiTrash2 } from "react-icons/fi";
 interface errorMessages {
   message: string
 };
+
 interface ingTypes {
   id: string,
   name: string,
+  serving_size: number,
+  servings_count: number,
+  serving_size_unit: string,
+  servings_count_unit: string,
   calories: number,
   carbs: number,
   proteins: number,
-  fats: number,
-  type: string,
-  ingredients: string[],
+  fats: number
 }
 function page() {
   const name = useRef<any>();
@@ -37,6 +40,7 @@ function page() {
   const [fetching, setFetching] = useState<boolean>(true);
   const [myIngredients, SetMyIngredients] = useState<ingTypes[]>([]);
   const [addedIngredients, setAddedIngrediens] = useState<ingTypes[]>([]);
+  const params = useParams<any>();
   useEffect(() => {
     const fetchData = async () => {
       const res = await ingredient.getAll();
@@ -44,13 +48,29 @@ function page() {
         SetMyIngredients(res.data);
       }
     };
+    const propagateAddedIngredients = async () => {
+      const res = await meal.get(params.id);
+      if (res.status === 200) {
+        console.log(res.data);
+        setAddedIngrediens(res.data.ingredients);
+        name.current.value = res.data.name;
+        calories.current.value = res.data.calories;
+        carbs.current.value = res.data.carbs;
+        proteins.current.value = res.data.proteins;
+        fats.current.value = res.data.fats;
+        type.current.value = res.data.type;
+      }
+    }
     fetchData();
+    propagateAddedIngredients();
     setFetching(false);
+    console.log(addedIngredients);
+    console.log(myIngredients);
   }, []);
   const check = (item: ingTypes) => {
     let found = 0;
     addedIngredients.map((ing: ingTypes) => {
-      if (ing === item) found = 1;
+      if (ing.name === item.name) found = 1;
     })
     return found;
   }
@@ -68,7 +88,7 @@ function page() {
     e.preventDefault();
     setIsLoading(true);
     const ings: string[] = []
-    addedIngredients.map(ing => {
+    myIngredients.map(ing => {
       ings.push(ing.id);
     })
     const data = {
@@ -79,14 +99,15 @@ function page() {
       fats: fats.current.value,
       type: type.current.value,
       ingredients: ings,
+
     }
-    const res = await meal.add(data);
+    const res = await meal.update(params.id, data);
     console.log(data);
     console.log(res);
     setIsLoading(false);
 
     if (res.status === 201) {
-      setMessages([{ message: "The Meal is Added Successfully!" }])
+      setMessages([{ message: "The Meal is Updated Successfully!" }])
       setSuccess(true);
       return;
     }
