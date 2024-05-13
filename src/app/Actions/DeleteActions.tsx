@@ -1,7 +1,7 @@
 'use server'
 import { revalidateTag } from "next/cache";
 
-const authToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmNkN2Y1YjlhY2U5MTc2ZTIyNGUxNSIsImVtYWlsIjoic3VwZXJAYXBwLmNvbSIsIm5hbWUiOiJTdXBlciBBZG1pbiIsInR5cGUiOiJhZG1pbiIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzE0OTUzNTcxLCJleHAiOjE3MTUwMzk5NzF9.bHu6Dy5bpGA37Su3-tXNoBM7Aq6aKYHkN0BlwXUtjJ0';
+const authToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmNkN2Y1YjlhY2U5MTc2ZTIyNGUxNSIsImVtYWlsIjoic3VwZXJAYXBwLmNvbSIsIm5hbWUiOiJTdXBlciBBZG1pbiIsInR5cGUiOiJhZG1pbiIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzE1NTQzNTUxLCJleHAiOjE3MTU2Mjk5NTF9.3QbCXY4ytd6LBw1fQLj940dBhKanWKOCAY4bPetApbQ';
 
 async function Delete(endpoint: string, Id: any) {
     const res = await fetch(`http://localhost:4000/api/v1/console/${endpoint}/${Id}`, {
@@ -30,3 +30,9 @@ export async function WorkoutDelete(WorkoutId: any) {
     return Delete('Workouts', WorkoutId);
 }
 
+export async function IngradientDelete(IngredientId: any) {
+    return Delete('Ingredients', IngredientId);
+}
+export async function MealDelete(MealId: any) {
+    return Delete('meals', MealId);
+}

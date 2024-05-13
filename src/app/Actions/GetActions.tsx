@@ -1,7 +1,7 @@
 'use server'
 import { revalidateTag } from "next/cache";
 
-const authToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmNkN2Y1YjlhY2U5MTc2ZTIyNGUxNSIsImVtYWlsIjoic3VwZXJAYXBwLmNvbSIsIm5hbWUiOiJTdXBlciBBZG1pbiIsInR5cGUiOiJhZG1pbiIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzE0OTUzNTcxLCJleHAiOjE3MTUwMzk5NzF9.bHu6Dy5bpGA37Su3-tXNoBM7Aq6aKYHkN0BlwXUtjJ0';
+const authToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmNkN2Y1YjlhY2U5MTc2ZTIyNGUxNSIsImVtYWlsIjoic3VwZXJAYXBwLmNvbSIsIm5hbWUiOiJTdXBlciBBZG1pbiIsInR5cGUiOiJhZG1pbiIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzE1NTQzNTUxLCJleHAiOjE3MTU2Mjk5NTF9.3QbCXY4ytd6LBw1fQLj940dBhKanWKOCAY4bPetApbQ';
 
 interface RequestOptions {
     headers?: Record<string, string>;
@@ -30,6 +30,48 @@ export async function fetchData(url: string, options: RequestOptions = {}) {
     }
 
     return res.json();
+}
+
+export async function getmeals() {
+    const url: string = 'http://localhost:4000/api/v1/console/meals';
+    const data = await fetchData(url, {
+         cache: 'no-cache', 
+         next: {
+             tags: ['meals'] 
+            } 
+        });
+    return data;
+}
+export async function getmealsById(mealId: String) {
+    const url: string = `http://localhost:4000/api/v1/console/meals/${mealId}`;
+    const data = await fetchData(url, {
+         cache: 'no-cache', 
+         next: {
+             tags: ['meals'] 
+            } 
+        });
+    return data;
+}
+
+export async function getIngradients() {
+    const url: string = 'http://localhost:4000/api/v1/console/Ingredients';
+    const data = await fetchData(url, {
+         cache: 'no-cache', 
+         next: {
+             tags: ['ingradients'] 
+            } 
+        });
+    return data;
+}
+export async function getIngradientsById(IngradientId:string) {
+    const url: string = `http://localhost:4000/api/v1/console/Ingredients/${IngradientId}`;
+    const data = await fetchData(url, {
+         cache: 'no-cache', 
+         next: {
+             tags: ['ingradients'] 
+            } 
+        });
+    return data;
 }
 
 export async function getWorkouts() {

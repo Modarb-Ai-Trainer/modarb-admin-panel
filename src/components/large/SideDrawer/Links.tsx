@@ -56,18 +56,24 @@ export const links = [
     },
     {
         id: 8,
+        title: "Ingredients",
+        path: "/Ingredients",
+        icon: <GiKnifeFork  size={16} />,
+    },
+    {
+        id: 9,
         title: "Programs",
         path: "/programs",
         icon: <HiClipboardList size={16}  />,
     },
     {
-        id: 9,
+        id: 10,
         title: "Analytics",
         path: "/analytics",
         icon: <GiProgression size={18} />,
     },
     {
-        id: 10,
+        id: 11,
         title: "Admins",
         path: "/admins",
         icon: <RiAdminFill size={16}  />,

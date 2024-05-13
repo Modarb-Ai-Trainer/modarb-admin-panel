@@ -24,9 +24,6 @@ async function page() {
         'sets',
         'instructions',
         'benefits',
-        'targetMuscles', 
-        'equipments',
-        'media'
       ]}
       title='Exercises'
       path='./add/exercises'
