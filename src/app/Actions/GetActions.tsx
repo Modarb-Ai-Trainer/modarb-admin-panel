@@ -1,8 +1,7 @@
 'use server'
 import { revalidateTag } from "next/cache";
 
-const authToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmNkN2Y1YjlhY2U5MTc2ZTIyNGUxNSIsImVtYWlsIjoic3VwZXJAYXBwLmNvbSIsIm5hbWUiOiJTdXBlciBBZG1pbiIsInR5cGUiOiJhZG1pbiIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzE1NTQzNTUxLCJleHAiOjE3MTU2Mjk5NTF9.3QbCXY4ytd6LBw1fQLj940dBhKanWKOCAY4bPetApbQ';
-
+const authToken = process.env.token;
 interface RequestOptions {
     headers?: Record<string, string>;
     cache?: RequestCache; 
@@ -85,6 +84,16 @@ export async function getWorkouts() {
     return data;
 }
 
+export async function getWorkoutByID(WorkoutId:String) {
+    const url: string = `http://localhost:4000/api/v1/console/workouts/${WorkoutId}`;
+    const data = await fetchData(url, {
+         cache: 'no-cache', 
+         next: {
+             tags: ['Workouts'] 
+            } 
+        });
+    return data;
+}
 
 
 

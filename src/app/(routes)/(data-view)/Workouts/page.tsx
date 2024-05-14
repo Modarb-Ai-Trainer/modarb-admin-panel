@@ -3,9 +3,10 @@ import styles from './page.module.css'
 import DataViewComponent from '@/components/large/DataViewComponent/DataViewComponent'
 import { getWorkouts } from '@/app/Actions/GetActions'
 import { WorkoutDelete } from '@/app/Actions/DeleteActions'
+import DataViewTable from '@/components/large/DataViewTable/DataViewTable'
 const Workouts =async () => {
     const {data:Workouts}=await getWorkouts()
-    // console.log(Workouts)
+    console.log(Workouts)
   return (
     <div className={styles.Workouts}>
         <DataViewComponent
@@ -26,7 +27,19 @@ const Workouts =async () => {
         path='./add/Workout'
         buttonTitle='Add Program'
         onDelete={WorkoutDelete}
+        viewPath='./Workouts/SingleElement'
         />
+        {/* <DataViewTable
+        data={Workouts.template_weeks}
+        keysToDisplay={[
+          'week_number',
+          'week_name',
+          'week_description',
+          'days'
+
+        ]} */}
+        
+        {/* /> */}
     </div>
   )
 }
