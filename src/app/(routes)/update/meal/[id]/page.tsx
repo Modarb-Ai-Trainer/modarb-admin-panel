@@ -70,7 +70,7 @@ function page() {
   const check = (item: ingTypes) => {
     let found = 0;
     addedIngredients.map((ing: ingTypes) => {
-      if (ing.name === item.name) found = 1;
+      if (ing.id === item.id) found = 1;
     })
     return found;
   }

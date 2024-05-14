@@ -1,15 +1,33 @@
 import admin from "./admin";
 import customErrors from './customErrors'
-
-interface ingTypes {
+interface exerciseTypes {
     name: string,
-    image: string
+    category: string,
+    duration: number,
+    expectedDurationRange: {
+        min: number,
+        max: number
+    },
+    reps: number,
+    sets: number,
+    instructions: string,
+    benefits: string,
+    targetMuscles: {
+        primary: string,
+        secondary: string
+    },
+    equipments: string[],
+    coverImage: string,
+    media: {
+        type: string,
+        url: string
+    }
 }
 export default {
-    add: async (data: ingTypes) => {
+    add: async (data: exerciseTypes) => {
         console.log(process.env.TOKEN, admin.token);
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/muscles`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/exercises`, {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
@@ -30,9 +48,9 @@ export default {
             return customErrors.general;
         }
     },
-    update: async (id: string, data: ingTypes) => {
+    update: async (id: string, data: exerciseTypes) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/muscles/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/exercises/${id}`, {
                 method: "PATCH",
                 mode: "cors",
                 cache: "no-cache",
@@ -43,7 +61,7 @@ export default {
                 },
                 body: JSON.stringify(data),
             });
-            console.log(res);
+            console.log(id, data);
             if (res.status === 422) return customErrors.invalidData;
             if (res.status === 401) return customErrors.unauthorized;
             if (!res.ok) return customErrors.general;
@@ -54,7 +72,7 @@ export default {
     },
     get: async (id: string) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/muscles/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/exercises/${id}`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
@@ -75,7 +93,7 @@ export default {
     },
     getAll: async () => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/muscles`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/exercises`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",

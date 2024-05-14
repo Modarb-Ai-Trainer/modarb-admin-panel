@@ -71,5 +71,26 @@ export default {
         } catch {
             return customErrors.general;
         }
+    },
+    getAll: async () => {
+        try {
+            const res = await fetch(`${process.env.URI}/api/v1/console/equipments`, {
+                method: "GET",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${admin.token}`
+                }
+            });
+            console.log(res);
+            if (res.status === 422) return customErrors.invalidData;
+            if (res.status === 401) return customErrors.unauthorized;
+            if (!res.ok) return customErrors.general;
+            return res.json();
+        } catch {
+            return customErrors.general;
+        }
     }
 }

@@ -1,121 +1,134 @@
-.addExercises {
-    margin: 1.6rem 0.8rem;
+.exercises {
+    width: 100%;
+    height: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
 
-    .addExercises__top {
-        width: 100%;
-        height: 7.5rem;
-
-        .addExercises__top__title {
-            font-size: 3rem;
-            font-weight: 700;
-            text-decoration: underline;
-            text-decoration-color: var(--s-color);
-            text-underline-offset: 10px;
-        }
+    .exercises__title {
+        font-size: 3rem;
+        margin-bottom: 1.2rem;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        color: #d9d1d1;
     }
 
-    .addExercises__bottom {
+    .exercises__form {
+        width: 60%;
         background-color: var(--main-color);
-        width: 100%;
         display: flex;
-        flex-direction: row;
-        padding: 3rem 2rem;
-        justify-content: baseline;
-        border-radius: 50px;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border-radius: 10px;
+        padding: 3rem;
+        margin-bottom: 6rem;
 
+        .exercises__form__input {
+            outline: none;
+            padding: 1rem;
+            margin: 1rem 0;
+            width: 100%;
+        }
 
-        .addExercises__bottom__form {
-            display: flex;
+        .exercises__form__textarea {
+            min-width: 100%;
+            max-width: 100%;
+            min-height: 7rem;
+            max-height: 10rem;
+            outline: none;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
 
-            @media(max-width:1100px) {
-                flex-direction: column;
+        .exercises__form__equipments {
+            width: 100%;
+            background-color: #332d2d;
+            padding: 1rem;
+
+            .exercises__form__equipments__title {
+                font-size: 2.3rem;
+                margin: 0.5rem 0;
             }
 
-            .addExercises__bottom__form__left {
-                flex: 1;
+            .exercises__form__equipments__list {
                 display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-
-                @media(max-width:1100px) {
-                    flex-direction: row;
-                    margin-bottom: 3rem;
-                    justify-content: space-evenly;
-
-                }
-
-                .addExercises__bottom__form__left__top {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-direction: column;
-                    font-size: 4rem;
-
-                    .addExercises__bottom__form__left__top__file {
-                        display: none;
-                    }
-
-                    .addExercises__bottom__form__left__top__icon {
-                        background-color: var(--bc-light-color);
-                        width: 15rem;
-                        height: 15rem;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border-radius: 50%;
-                        margin-bottom: 2rem;
-                        cursor: pointer;
-                        padding: 1rem;
-
-                        @media(max-width:1100px) {
-                            width: 11rem;
-                            height: 11rem;
-
-                        }
-
-                        .addExercises__bottom__form__left__top__icon__label {
-                            cursor: pointer;
-                            transition: 0.5s ease;
-
-                        }
-
-
-
-
-                    }
-
-                    .addExercises__bottom__form__left__top__icon:hover {
-                        .addExercises__bottom__form__left__top__icon__label {
-                            color: red;
-                            scale: 1.3;
-                        }
-                    }
-
-                    .addExercises__bottom__form__left__top__text {
-                        font-size: 3.5rem;
-                        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-                        @media(max-width:1100px) {
-                            font-size: 2rem;
-
-                        }
-                    }
-                }
-            }
-
-            .addExercises__bottom__form__right {
-
-                flex: 2;
-                display: flex;
-                row-gap: 7rem;
                 flex-wrap: wrap;
-                justify-content: space-between;
+
+                .exercises__form__equipments__list__item {
+                    background-color: var(--main-color);
+                    padding: 1rem 1.3rem;
+                    border-radius: 20px;
+                    font-size: 1.3rem;
+                    margin: 0.3rem 0.6rem;
+                    border: 1px solid white;
+                }
+            }
+
+            .exercises__form__equipments__add {
+                height: 20rem;
+                overflow-y: scroll;
+                margin: 1rem 0;
+                padding: 1rem;
+                border-top: 1px solid white;
+
+                .exercises__form__equipments__add__item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 1rem 0;
+                    padding: 0.4rem;
+                    transition: all 0.5s ease;
+                    border-bottom: 1px solid transparent;
+
+                    .exercises__form__equipments__add__item__title {
+                        font-size: 1.7rem;
+                    }
+
+                    .exercises__form__equipments__add__item__button {
+                        font-size: 2rem;
+                        cursor: pointer;
+                        transition: all 0.5s ease;
+
+                    }
+                }
+
+                .exercises__form__equipments__add__item:hover {
+                    border-bottom: 1px solid white;
+                }
+
             }
         }
 
+        .exercises__form__button {
+            width: 50%;
+            background-color: navy;
+            color: white;
+            border: 2px solid transparent;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            padding: 1.2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
 
+        .exercises__form__button:hover {
 
+            background-color: white;
+            color: navy;
+            border: 2px solid navy;
+            width: 70%;
+        }
     }
+}
+
+.add:hover {
+    color: green;
+}
+
+.remove:hover {
+    color: red;
 }
