@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './page.module.css'
 import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
-import muscle from '../../../api/muscle';
-import equipment from '../../../api/equipment';
-import exercise from '../../../api/exercise';
+import muscle from '../../../../api/muscle';
+import equipment from '../../../../api/equipment';
+import exercise from '../../../../api/exercise';
 import { useParams, useRouter } from 'next/navigation'
 import ErrorWrapper from '@/components/small/ErrorWrapper/ErrorWrapper';
 import FetchingWrapper from '@/components/large/FetchingWrapper/FetchingWrapper';
@@ -65,6 +65,7 @@ function page() {
   const [myEquipments, SetMyEquipments] = useState<equipmentType[]>([]);
   const [myMuscles, SetMyMuscles] = useState<equipmentType[]>([]);
   const [addedEquepments, setAddedEquepments] = useState<equipmentType[]>([]);
+  const param = useParams<any>();
   useEffect(() => {
     const fetchEquipments = async () => {
       const res = await equipment.getAll();
@@ -78,8 +79,30 @@ function page() {
         SetMyMuscles(res.data);
       }
     };
+    const fetchExercises = async () => {
+      const res = await exercise.get(param.id);
+      if (res.status === 200) {
+        SetMyEquipments(res.data.equipments);
+        name.current.value = res.data.name;
+        category.current.value = res.data.category;
+        duration.current.value = res.data.duration;
+        MinExptectedDurationRange.current.value = res.data.expectedDurationRange.min;
+        MaxExptectedDurationRange.current.value = res.data.expectedDurationRange.max;
+        reps.current.value = res.data.reps;
+        sets.current.value = res.data.sets;
+        instructions.current.value = res.data.instructions;
+        benefits.current.value = res.data.benefits;
+        coverImage.current.value = res.data.coverImage;
+        mediaType.current.value = res.data.media.type;
+        mediaURL.current.value = res.data.media.url;
+        primaryMuscles.current.value = res.data.targetMuscles[0].primary;
+        secondaryMuscles.current.value = res.data.targetMuscles[0].secondary;
+
+      }
+    }
     fetchEquipments();
     fetchMuscles();
+    fetchExercises();
     setFetching(false);
   }, []);
   const check = (item: equipmentType) => {
@@ -135,7 +158,7 @@ function page() {
     setIsLoading(false);
 
     if (res.status === 200) {
-      setMessages([{ message: "The Exercise is Added Successfully!" }])
+      setMessages([{ message: "The Exercise is Updated Successfully!" }])
       setSuccess(true);
       return;
     }
@@ -151,7 +174,7 @@ function page() {
       ) : (
 
         <div className={styles.exercises} >
-          <h3 className={styles.exercises__title}>Add an Exercise</h3>
+          <h3 className={styles.exercises__title}>Update an Exercise</h3>
           <form className={styles.exercises__form} onSubmit={handleClick} >
             {messages?.map(msg => (
               <ErrorWrapper type={success ? "success" : "failed"}>{msg.message}</ErrorWrapper>
