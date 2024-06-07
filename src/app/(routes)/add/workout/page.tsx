@@ -5,6 +5,7 @@ import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
 import muscle from '../../../api/muscle';
 import equipment from '../../../api/equipment';
+import workout from '../../../api/workout';
 import exercise from '../../../api/exercise';
 import { useParams, useRouter } from 'next/navigation'
 import ErrorWrapper from '@/components/small/ErrorWrapper/ErrorWrapper';
@@ -17,15 +18,7 @@ import { FiTrash2 } from "react-icons/fi";
 interface errorMessages {
     message: string
 };
-interface dayType {
-    id: number,
-    title: string,
-}
-interface weekType {
-    id: number,
-    title: string,
-    days: dayType[],
-};
+
 interface exerciseTypes {
     id: string,
     name: string,
@@ -50,6 +43,39 @@ interface exerciseTypes {
         url: string
     }
 }
+interface dayType {
+    id: number,
+    type: string,
+    exercises: exerciseTypes[],
+}
+interface weekType {
+    id: number,
+    title: string,
+    description: string,
+    days: dayType[],
+};
+interface workoutType {
+    name: string,
+    description: string,
+    type: string,
+    image: string,
+    fitness_level: string,
+    fitness_goal: string,
+    place: string,
+    min_per_day: number,
+    total_number_of_days: number,
+    template_weeks: {
+        week_number: number,
+        week_name: string,
+        week_description: string,
+        days: {
+            day_number: number,
+            total_number_exercises: number,
+            day_type: string,
+            exercises: string[]
+        }[],
+    }[],
+}
 function page() {
     const name = useRef<any>();
     const description = useRef<any>();
@@ -62,13 +88,14 @@ function page() {
     const weekTitle = useRef<any>("Untitled");
     const dayTitle = useRef<any>("Untitled");
     const weekId = useRef<any>(1);
+    const dayType = useRef<any>();
     const [weeks, setWeeks] = useState<weekType[]>([]);
     const [exercises, setExercises] = useState<exerciseTypes[]>([]);
     const [addedExercises, setAddedExercises] = useState<exerciseTypes[]>([]);
     const [messages, setMessages] = useState<errorMessages[]>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
-    const [addDays, setAddDays] = useState<boolean>(true);
+    const [addDays, setAddDays] = useState<boolean>(false);
     const [fetching, setFetching] = useState<boolean>(true);
     const check = (item: exerciseTypes) => {
         let found = 0;
@@ -87,22 +114,21 @@ function page() {
             equipment != item
         )))
     }
-    const pushWeek = (e: any) => {
-        e.preventDefault();
+    const pushWeek = () => {
         console.log(weekTitle.current.value);
-        setWeeks([...weeks, { id: weeks.length + 1, title: weekTitle.current.value, days: [] }]);
-        console.log(weeks)
+        setWeeks([...weeks, { id: weeks.length + 1, title: weekTitle.current.value, days: [], description: description.current.value }]);
+        console.log("From Push Week", weeks)
     }
-    const pushDay = (e: any) => {
-        e.preventDefault();
-        let idx: number = parseInt(weekId.current.value);
+    const pushDay = () => {
+        let title: string = weekTitle.current.value;
         setWeeks(weeks.map(week => (
-            week.id === idx ? ({ ...week, days: [...week.days, { id: week.days?.length + 1, title: dayTitle.current.value }] }) : week
+            week.title === title ? ({ ...week, days: [...week.days, { id: week.days?.length + 1, type: dayType.current.value, exercises: addedExercises }] }) : week
         )));
+        console.log(weeks);
     }
-    const eraseWeek = (weekId: number) => {
+    const eraseWeek = (weekTitle: string) => {
         setWeeks(weeks.filter(week => (
-            week.id !== weekId
+            week.title !== weekTitle
         )));
     }
     const eraseDay = (weekId: number, dayId: number) => {
@@ -128,46 +154,32 @@ function page() {
     }, []);
 
     const handleClick = async (e: any) => {
-        // e.preventDefault();
-        // setIsLoading(true);
-        // const equipments: string[] = []
-        // const data: exerciseTypes = {
-        //     name: name.current.value,
-        //     category: category.current.value,
-        //     duration: duration.current.value,
-        //     expectedDurationRange: {
-        //         min: MinExptectedDurationRange.current.value,
-        //         max: MaxExptectedDurationRange.current.value
-        //     },
-        //     reps: reps.current.value,
-        //     sets: sets.current.value,
-        //     instructions: instructions.current.value,
-        //     benefits: benefits.current.value,
-        //     coverImage: coverImage.current.value,
-        //     media: {
-        //         type: mediaType.current.value,
-        //         url: mediaURL.current.value
-        //     },
-        //     targetMuscles: {
-        //         primary: primaryMuscles.current.value,
-        //         secondary: secondaryMuscles.current.value,
-        //     },
-        //     equipments: equipments,
-        // }
-        // const res = await exercise.add(data);
-        // console.log(data);
-        // console.log(res);
-        // setIsLoading(false);
+        e.preventDefault();
+        setIsLoading(true);
+        const data: workoutType = {
+            name: name.current.value,
+            description: description.current.value,
+            type: type.current.value,
+            image: image.current.value,
+            fitness_level: fitness_level.current.value,
+            fitness_goal: fitness_goal.current.value,
+            place: place.current.value,
+            min_per_day: min_per_day.current.value,
+        }
+        const res = await workout.add(data);
+        console.log(data);
+        console.log(res);
+        setIsLoading(false);
 
-        // if (res.status === 200) {
-        //     setMessages([{ message: "The Exercise is Updated Successfully!" }])
-        //     setSuccess(true);
-        //     return;
-        // }
-        // setSuccess(false);
-        // res.error.map((err: any) => (
-        //     setMessages([{ message: err }])
-        // ))
+        if (res.status === 200) {
+            setMessages([{ message: "The Workout is Added Successfully!" }])
+            setSuccess(true);
+            return;
+        }
+        setSuccess(false);
+        res.error.map((err: any) => (
+            setMessages([{ message: err }])
+        ))
     }
     return (
         <>
@@ -183,17 +195,16 @@ function page() {
                                 <span className={styles.workout__form__popup__arrow} onClick={() => setAddDays(false)}>
                                     <IoArrowBackCircleOutline />
                                 </span>
-                                <select ref={weekId} className={styles.workout__form__input}>
-                                    <option selected hidden>Choose a week</option>
+                                <select ref={weekTitle} className={styles.workout__form__input}>
                                     {weeks.map((week, idx) => {
                                         return (
-                                            <option value={week.id}>{week.title}</option>
+                                            <option value={week.title}>{week.title}</option>
                                         )
                                     })}
                                 </select>
                                 <div className={styles.workout__form__popup__displayedWeek}>
                                 </div>
-                                <input type="text" ref={name} placeholder='Day Type' className={styles.workout__form__input} />
+                                <input type="text" ref={dayType} placeholder='Day Type' className={styles.workout__form__input} />
                                 <div className={styles.workout__form__exercise}>
                                     <h4 className={styles.workout__form__exercise__title}>Exercises:</h4>
                                     <ul className={styles.workout__form__exercise__list}>
@@ -222,7 +233,28 @@ function page() {
                                         ))}
                                     </ul>
                                 </div>
-                                <span className={styles.workout__form__popup__button}>Add Day</span>
+                                <span className={styles.workout__form__popup__button} onClick={pushDay}>Add Day</span>
+                                <div className={styles.displayedWeeks}>
+                                    {weeks.map(week => (
+                                        <div className={styles.displayedWeeks__week}>
+                                            <h3 className={styles.displayedWeeks__week__title}>{week.title}</h3>
+                                            <p className={styles.displayedWeeks__week__description}>{week.description}</p>
+                                            <div className={styles.displayedWeeks__week__days}>
+                                                {week.days.map((day, idx) => (
+                                                    <div className={styles.displayedWeeks__week__days__day}>
+                                                        <h4 className={styles.displayedWeeks__week__days__day__title}>{idx + 1} - {day.type}</h4>
+                                                        <div className={styles.displayedWeeks__week__days__day__exercises}>
+                                                            {day.exercises.map(exer => (
+                                                                <span className={styles.displayedWeeks__week__days__day__exercises__item}>{exer.name}</span>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
                             </section>
                         ) : (
                             <>
@@ -258,7 +290,13 @@ function page() {
 
                                             {weeks.map((week, idx) => (
                                                 <li className={styles.workout__form__add__weeks__list__item}>
-                                                    {week.id} - {week.title}
+                                                    <div className={styles.workout__form__add__weeks__list__item__title}>
+                                                        {week.title}
+                                                    </div>
+                                                    <div className={styles.workout__form__add__weeks__list__item__icon} onClick={() => eraseWeek(week.title)}>
+
+                                                        <FiTrash2 />
+                                                    </div>
 
                                                 </li>
                                             ))}

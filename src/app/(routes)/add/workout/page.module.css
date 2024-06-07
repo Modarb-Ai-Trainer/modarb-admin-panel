@@ -67,11 +67,20 @@
                     width: 100%;
 
                     .workout__form__add__weeks__list__item {
-                        padding: 0.5rem;
+                        padding: 0.5rem 1rem;
                         font-size: 2rem;
-                        background: red;
+                        background: #352c2c;
                         width: 100%;
                         margin: 3px 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        .workout__form__add__weeks__list__item__icon {
+                            margin: 0.2rem;
+                            color: rgb(199, 34, 34);
+                            cursor: pointer;
+                        }
                     }
 
                 }
@@ -229,4 +238,59 @@
         border: 2px solid navy;
     }
 
+}
+
+.displayedWeeks {
+    display: flex;
+    flex-direction: column;
+
+    .displayedWeeks__week {
+        padding: 1rem;
+        background-color: #332d2d;
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: column;
+
+        .displayedWeeks__week__title {
+            font-size: 2rem;
+        }
+
+        .displayedWeeks__week__description {
+            font-size: 1.4rem;
+        }
+
+        .displayedWeeks__week__days {
+            background-color: #474545;
+            padding: 1rem;
+            margin: 1rem 0;
+
+            .displayedWeeks__week__days__day {
+                padding: 1.2rem;
+                display: flex;
+                flex-direction: column;
+                margin: 1rem 0;
+                border-radius: 3px;
+                background: #4d2929;
+
+                .displayedWeeks__week__days__day__title {
+                    font-size: 1.7rem;
+                    margin: 0.5rem 0;
+                }
+
+                .displayedWeeks__week__days__day__exercises {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    .displayedWeeks__week__days__day__exercises__item {
+                        font-size: 1.1rem;
+                        background-color: #352c2c;
+                        padding: 1rem;
+                        border-radius: 20px;
+                        margin: 0.3rem;
+
+                    }
+                }
+            }
+        }
+    }
 }
