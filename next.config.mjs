@@ -2,6 +2,10 @@
 const nextConfig = {
   images: {
     domains: ['loremflickr.com'],
+    
+    domains: ['placehold.co', 'other-allowed-domains.com'],
+    dangerouslyAllowSVG: true,
+    
   },
   env: {
     URI: process.env.URI,

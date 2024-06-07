@@ -24,7 +24,7 @@ const Workouts =async () => {
             'total_number_days',
         ]}
         title='Workouts Programs'
-        path='./add/Workout'
+        path='./add/workout'
         buttonTitle='Add Program'
         onDelete={WorkoutDelete}
         viewPath='./Workouts/SingleElement'

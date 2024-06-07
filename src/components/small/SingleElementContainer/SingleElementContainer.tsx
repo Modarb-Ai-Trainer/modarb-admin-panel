@@ -3,6 +3,8 @@ import Button from '../Button/Button'
 import Link from 'next/link'
 import styles from './SingleElementContainer.module.css'
 import SingleList from '../SingleList/SingleList'
+import Image from 'next/image'
+import exercise from '@/app/api/exercise'
 interface Exercise {
     id: number;
     name: string;
@@ -19,6 +21,8 @@ interface Exercise {
   }
 
   const SingleElementContainer: React.FC<SingleElementContainerProps> = ({ exercise }) => {
+    console.log(exercise.media.url)
+
     return (
     <div className={styles.SingleElement}>
     <div className={styles.SingleElement_Button}>
@@ -26,8 +30,7 @@ interface Exercise {
     <div className={styles.singleElement_container}>
       <div className={styles.singleElement_container_top}>
         <div className={styles.singleElement_container_top_left}>
-        {/* <Image src={exercise.media.url} alt={exercise.name} layout='fill' /> */}
-        <img src={exercise.media.url} alt='media'></img>
+        <Image src={exercise.media.url} alt={exercise.name} layout='fill' />
         </div>
         <div className={styles.singleElement_container_top_right}>
           <SingleList  id={exercise.id}  name={exercise.name} category={exercise.category} sets={exercise.sets}  reps={exercise.reps} duration={exercise.duration} expectedDurationRange={exercise.expectedDurationRange}  />

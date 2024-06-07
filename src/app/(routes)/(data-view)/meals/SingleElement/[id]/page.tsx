@@ -8,7 +8,7 @@ const SingleMeal = async({ params, searchParams }: { params: { id: String }; sea
     console.log(meal)
     const ingredientsWithIds = meal.ingredients.map((ingredient:any, index:number) => ({
         ...ingredient,
-        id: ingredient._id // You can use a more appropriate unique identifier if available
+        id: ingredient.id // You can use a more appropriate unique identifier if available
     }));
     return (
     <div>
