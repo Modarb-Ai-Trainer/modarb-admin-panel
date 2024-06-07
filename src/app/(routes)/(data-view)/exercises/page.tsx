@@ -17,11 +17,10 @@ async function page() {
       keysToDisplay={[
         'id',
         'name',
+        'coverImage',
         'category',
         'duration',
         'expectedDurationRange',
-        'reps',
-        'sets',
         'instructions',
         'benefits',
       ]}

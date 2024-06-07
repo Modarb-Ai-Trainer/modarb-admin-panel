@@ -14,9 +14,9 @@ const Workouts =async () => {
         keysToDisplay={[
             'id',
             'name',
+            'image',
             'description',
             'type',
-            'created_by',
             'fitness_level',
             'fitness_goal',
             'place',
