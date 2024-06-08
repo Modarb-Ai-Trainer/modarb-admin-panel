@@ -62,8 +62,8 @@ export const links = [
     },
     {
         id: 9,
-        title: "Programs",
-        path: "/programs",
+        title: "MealPlans",
+        path: "/MealPlans",
         icon: <HiClipboardList size={16}  />,
     },
     {

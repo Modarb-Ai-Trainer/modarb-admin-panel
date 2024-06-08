@@ -40,7 +40,10 @@ const SingleElement = async ({ params, searchParams }: { params: { id: String };
 
   return (
    <div className={styles.ElementContainer}>
-    <SingleElementContainer exercise={exercise}/>
+    <SingleElementContainer 
+    data={exercise}
+    keysToDisplay={['id', 'name', 'category', 'duration', 'expectedDurationRange']}
+    />
      <DataViewTable
        data={[exercise]}
        keysToDisplay={[
