@@ -1,11 +1,11 @@
 'use client'
-'use client'
 import React, { useState, useEffect } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Link from 'next/link';
 import styles from './DataViewTable.module.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MdDelete } from "react-icons/md";
+import ConfirmDelete from '@/components/small/ConfirmDelete/ConfirmDelete';
 
 interface DataRow {
   [key: string]: any;
@@ -28,6 +28,8 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
 
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [forceRerender, setForceRerender] = useState<boolean>(false);
+  const [confirmDeleteOpen, setConfirmDeleteOpen] = useState<boolean>(false);
+  const [selectedRowId, setSelectedRowId] = useState<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,6 +44,24 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
     };
   }, []);
 
+
+  //confirm delete
+  const handleDeleteClick = (id: number) => {
+    setSelectedRowId(id);
+    setConfirmDeleteOpen(true);
+  };
+
+  const handleConfirmClose = (confirmed: boolean) => {
+    setConfirmDeleteOpen(false);
+    if (confirmed && selectedRowId !== null) {
+      onDelete?.(selectedRowId);
+    }
+    setSelectedRowId(null);
+  };
+
+
+
+  
   const actionColumn: GridColDef = {
     field: 'action',
     headerName: 'Action',
@@ -53,7 +73,7 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
           </Link>
         ) : null}
         {onDelete && (
-          <div className={styles.deleteButton} onClick={() => onDelete(params.row.id)}><MdDelete size={18} /></div>
+          <div className={styles.deleteButton} onClick={() => handleDeleteClick(params.row.id)}><MdDelete size={18} /></div>
         )}
       </div>
     ),
@@ -116,6 +136,12 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
           />
         </div>
       </ThemeProvider>
+      <ConfirmDelete
+        open={confirmDeleteOpen}
+        title="Confirm Deletion"
+        content="Are you sure you want to delete this item?"
+        onClose={handleConfirmClose}
+      />
     </div>
   );
 };

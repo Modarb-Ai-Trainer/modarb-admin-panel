@@ -29,17 +29,7 @@ const Workouts =async () => {
         onDelete={WorkoutDelete}
         viewPath='./Workouts/SingleElement'
         />
-        {/* <DataViewTable
-        data={Workouts.template_weeks}
-        keysToDisplay={[
-          'week_number',
-          'week_name',
-          'week_description',
-          'days'
-
-        ]} */}
-        
-        {/* /> */}
+       
     </div>
   )
 }
