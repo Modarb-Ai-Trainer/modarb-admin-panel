@@ -57,7 +57,7 @@ const WeekDetails: React.FC<{ week: Week }> = ({ week }) => {
                 />
             </ThemeProvider>
             {week.days.map(day => (
-                <DayDetails key={day.day_number} day={day} />
+                <DayDetails key={day.day_number} day={day}  />
             ))}
         </div>
     );

@@ -1,8 +1,8 @@
-'use client'
 import React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from "./DayDetails.module.css";
+import DataViewComponent from '../../DataViewComponent/DataViewComponent';
+import { ExerciseDelete } from '@/app/Actions/DeleteActions';
 interface Exercise {
     id:String;
 }
@@ -23,14 +23,12 @@ const darkTheme = createTheme({
     },
 });
 const DayDetails: React.FC<DayDetailsProps>  = ({ day }) => {
-    const columns = [
-        { field: 'exercise', headerName: 'Exercise', width: 200 },
-    ];
-
+   
     const rows = day.exercises.map((exercise, index) => ({
-        id: index,
-        exercise: exercise,
+        id: exercise,
     }));
+
+    console.log(rows)
 
     return (
         <div className={styles.DayDetails_container}>
@@ -39,14 +37,18 @@ const DayDetails: React.FC<DayDetailsProps>  = ({ day }) => {
                 <p>Type: {day.day_type}</p>
                 <p>Total Exercises: {day.total_number_exercises}</p>
             </div>
-            <ThemeProvider theme={darkTheme}>
-                <DataGrid 
-                className={styles.DayDetails_container_dataGrid}
-                rows={rows}
-                columns={columns} 
-                paginationModel={{ page: 0, pageSize: 5 }} 
-                pageSizeOptions={[5, 10, 20]}  />
-             </ThemeProvider>
+             <DataViewComponent
+                    data={rows}
+                    keysToDisplay={[
+                        'id',
+                    ]}
+                    title='Exercises'
+                    path='./add/exercises'
+                    buttonTitle='Add Exercise'
+                    onDelete={ExerciseDelete}
+                    viewPath='/exercises/SingleElement'
+      
+              /> 
         </div>
     );
 };

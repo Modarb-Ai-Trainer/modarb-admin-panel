@@ -16,6 +16,7 @@ interface DataViewTableProps {
   keysToDisplay: string[];
   onDelete?: (id: number) => void;
   viewPath?: string;
+  useExerciseAsId?: boolean; // Add this line
 }
 
 const darkTheme = createTheme({
@@ -24,7 +25,7 @@ const darkTheme = createTheme({
   },
 });
 
-const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete ,viewPath }) => {
+const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete, viewPath, useExerciseAsId }) => {
 
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [forceRerender, setForceRerender] = useState<boolean>(false);
@@ -36,16 +37,14 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
       setWindowWidth(window.innerWidth);
       setForceRerender(prevState => !prevState);
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-
-  //confirm delete
   const handleDeleteClick = (id: number) => {
     setSelectedRowId(id);
     setConfirmDeleteOpen(true);
@@ -59,24 +58,24 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
     setSelectedRowId(null);
   };
 
-
-
-  
   const actionColumn: GridColDef = {
     field: 'action',
     headerName: 'Action',
-    renderCell: (params) => (
-      <div className={styles.cellAction}>
-        {viewPath ? ( 
-          <Link href={`${viewPath}/${params.row.id}`} passHref className={styles.viewButton}>
-            view
-          </Link>
-        ) : null}
-        {onDelete && (
-          <div className={styles.deleteButton} onClick={() => handleDeleteClick(params.row.id)}><MdDelete size={18} /></div>
-        )}
-      </div>
-    ),
+    renderCell: (params) => {
+      const linkId = useExerciseAsId ? params.row.exercise : params.row.id; 
+      return (
+        <div className={styles.cellAction}>
+          {viewPath ? (
+            <Link href={`${viewPath}/${linkId}`} passHref className={styles.viewButton}>
+              view
+            </Link>
+          ) : null}
+          {onDelete && (
+            <div className={styles.deleteButton} onClick={() => handleDeleteClick(params.row.id)}><MdDelete size={18} /></div>
+          )}
+        </div>
+      );
+    },
   };
 
   const renderArrayCell = (value: any[]) => {
