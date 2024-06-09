@@ -54,6 +54,7 @@ const ProgramDetails: React.FC<ProgramDetailsProps> = ({ program }) => {
         <div  className={styles.ProgramDetailsContainer}>
             <div className={styles.ProgramDetailsContainer_generalInfo}>
                 <SingleElementContainer
+                updateTitle='workouts'
                 data={program}
                 keysToDisplay={['id','name', 'description',  'fitness_level', 'fitness_goal','place','min_per_day','total_number_days']}     
                 />

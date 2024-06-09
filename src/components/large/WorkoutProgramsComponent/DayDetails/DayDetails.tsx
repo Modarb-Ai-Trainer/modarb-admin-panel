@@ -1,8 +1,8 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from "./DayDetails.module.css";
-import DataViewComponent from '../../DataViewComponent/DataViewComponent';
 import { ExerciseDelete } from '@/app/Actions/DeleteActions';
+import DataViewTable from '../../DataViewTable/DataViewTable';
 interface Exercise {
     id:String;
 }
@@ -37,14 +37,11 @@ const DayDetails: React.FC<DayDetailsProps>  = ({ day }) => {
                 <p>Type: {day.day_type}</p>
                 <p>Total Exercises: {day.total_number_exercises}</p>
             </div>
-             <DataViewComponent
+             <DataViewTable
                     data={rows}
                     keysToDisplay={[
                         'id',
                     ]}
-                    title='Exercises'
-                    path='./add/exercises'
-                    buttonTitle='Add Exercise'
                     onDelete={ExerciseDelete}
                     viewPath='/exercises/SingleElement'
       

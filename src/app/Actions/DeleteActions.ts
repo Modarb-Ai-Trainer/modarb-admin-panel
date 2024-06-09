@@ -3,7 +3,7 @@ import { revalidateTag } from "next/cache";
 
 const authToken = process.env.token;
 async function Delete(endpoint: string, Id: any) {
-    const res = await fetch(`http://localhost:4000/api/v1/console/${endpoint}/${Id}`, {
+    const res = await fetch(`${process.env.server}/api/v1/console/${endpoint}/${Id}`, {
         method: 'DELETE',
         headers: {
             Accept: 'application/json',
@@ -34,4 +34,7 @@ export async function IngradientDelete(IngredientId: any) {
 }
 export async function MealDelete(MealId: any) {
     return Delete('meals', MealId);
+}
+export async function MealPlanDelete(MealPlanId:any) {
+    return Delete('mealplans',MealPlanId)
 }

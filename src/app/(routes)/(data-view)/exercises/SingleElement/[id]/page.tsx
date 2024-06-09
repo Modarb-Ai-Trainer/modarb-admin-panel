@@ -41,6 +41,7 @@ const SingleElement = async ({ params, searchParams }: { params: { id: String };
   return (
    <div className={styles.ElementContainer}>
     <SingleElementContainer 
+    updateTitle='exercise'
     data={exercise}
     keysToDisplay={['id', 'name', 'category', 'duration', 'expectedDurationRange']}
     />

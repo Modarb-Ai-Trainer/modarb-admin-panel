@@ -3,7 +3,6 @@ import styles from './page.module.css'
 import DataViewComponent from '@/components/large/DataViewComponent/DataViewComponent'
 import { getWorkouts } from '@/app/Actions/GetActions'
 import { WorkoutDelete } from '@/app/Actions/DeleteActions'
-import DataViewTable from '@/components/large/DataViewTable/DataViewTable'
 const Workouts =async () => {
     const {data:Workouts}=await getWorkouts()
     console.log(Workouts)

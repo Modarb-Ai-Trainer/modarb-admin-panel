@@ -30,9 +30,30 @@ export async function fetchData(url: string, options: RequestOptions = {}) {
 
     return res.json();
 }
+export async function getmealPlans() {
+    const url: string = `${process.env.server}/api/v1/console/mealplans`;
+    const data = await fetchData(url, {
+         cache: 'no-cache', 
+         next: {
+             tags: ['mealplans'] 
+            } 
+        });
+    return data;
+}
+export async function getmealplansById(mealplanId: String) {
+    const url: string = `${process.env.server}/api/v1/console/mealplans/${mealplanId}`;
+    const data = await fetchData(url, {
+         cache: 'no-cache', 
+         next: {
+             tags: ['mealplans'] 
+            } 
+        });
+    return data;
+}
+
 
 export async function getmeals() {
-    const url: string = 'http://localhost:4000/api/v1/console/meals';
+    const url: string = `${process.env.server}/api/v1/console/meals`;
     const data = await fetchData(url, {
          cache: 'no-cache', 
          next: {
@@ -42,7 +63,7 @@ export async function getmeals() {
     return data;
 }
 export async function getmealsById(mealId: String) {
-    const url: string = `http://localhost:4000/api/v1/console/meals/${mealId}`;
+    const url: string = `${process.env.server}/api/v1/console/meals/${mealId}`;
     const data = await fetchData(url, {
          cache: 'no-cache', 
          next: {
@@ -53,7 +74,7 @@ export async function getmealsById(mealId: String) {
 }
 
 export async function getIngradients() {
-    const url: string = 'http://localhost:4000/api/v1/console/Ingredients';
+    const url: string = `${process.env.server}/api/v1/console/Ingredients`;
     const data = await fetchData(url, {
          cache: 'no-cache', 
          next: {
@@ -63,7 +84,7 @@ export async function getIngradients() {
     return data;
 }
 export async function getIngradientsById(IngradientId:string) {
-    const url: string = `http://localhost:4000/api/v1/console/Ingredients/${IngradientId}`;
+    const url: string = `${process.env.server}/api/v1/console/Ingredients/${IngradientId}`;
     const data = await fetchData(url, {
          cache: 'no-cache', 
          next: {
@@ -74,7 +95,7 @@ export async function getIngradientsById(IngradientId:string) {
 }
 
 export async function getWorkouts() {
-    const url: string = 'http://localhost:4000/api/v1/console/workouts';
+    const url: string = `${process.env.server}/api/v1/console/workouts`;
     const data = await fetchData(url, {
          cache: 'no-cache', 
          next: {
@@ -85,7 +106,7 @@ export async function getWorkouts() {
 }
 
 export async function getWorkoutByID(WorkoutId:String) {
-    const url: string = `http://localhost:4000/api/v1/console/workouts/${WorkoutId}`;
+    const url: string = `${process.env.server}/api/v1/console/workouts/${WorkoutId}`;
     const data = await fetchData(url, {
          cache: 'no-cache', 
          next: {
@@ -99,7 +120,7 @@ export async function getWorkoutByID(WorkoutId:String) {
 
 
 export async function getMuscles() {
-    const url: string = 'http://localhost:4000/api/v1/console/muscles';
+    const url: string = `${process.env.server}/api/v1/console/muscles`;
     const data = await fetchData(url, {
          cache: 'no-cache', 
          next: {
@@ -110,7 +131,7 @@ export async function getMuscles() {
 }
 
 export async function getMusclesById(muscleId: String){
-    const url: string = `http://localhost:4000/api/v1/console/muscles/${muscleId}`;
+    const url: string = `${process.env.server}/api/v1/console/muscles/${muscleId}`;
     const data = await fetchData(url, { 
         cache: 'no-cache',
          next: {
@@ -121,7 +142,7 @@ export async function getMusclesById(muscleId: String){
 }
 
 export async function getExercises() {
-    const url: string = 'http://localhost:4000/api/v1/console/exercises';
+    const url: string = `${process.env.server}/api/v1/console/exercises`;
     const data = await fetchData(url, { 
         cache: 'no-cache',
          next: {
@@ -132,7 +153,7 @@ export async function getExercises() {
 }
 
 export async function getExerciseById(exerciseId: String){
-    const url: string = `http://localhost:4000/api/v1/console/exercises/${exerciseId}`;
+    const url: string = `${process.env.server}/api/v1/console/exercises/${exerciseId}`;
     const data = await fetchData(url, { 
         cache: 'no-cache', 
         next: { 
@@ -144,7 +165,7 @@ export async function getExerciseById(exerciseId: String){
 
 
 export async function getEquipments() {
-    const url: string = 'http://localhost:4000/api/v1/console/equipments';
+    const url: string =  `${process.env.server}/api/v1/console/equipments`;
     const data = await fetchData(url, {
          cache: 'no-cache', 
          next: { 
@@ -155,7 +176,7 @@ export async function getEquipments() {
 }
 
 export async function getEquipmentById(equipmentId: String) {
-    const url: string = `http://localhost:4000/api/v1/console/equipments/${equipmentId}`;
+    const url: string = `${process.env.server}/api/v1/console/equipments/${equipmentId}`;
     const data = await fetchData(url, { 
         cache: 'no-cache',
          next: {
@@ -166,7 +187,7 @@ export async function getEquipmentById(equipmentId: String) {
 }
 
 export async function getAdmins() {
-    const url: string = 'http://localhost:4000/api/v1/console/admins';
+    const url: string = `${process.env.server}/api/v1/console/admins`;
     const data = await fetchData(url, { 
         cache: 'no-cache',
          next: { 

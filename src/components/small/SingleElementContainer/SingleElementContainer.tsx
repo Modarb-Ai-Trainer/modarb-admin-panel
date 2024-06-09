@@ -3,13 +3,15 @@ import styles from './SingleElementContainer.module.css';
 import SingleList from '../SingleList/SingleList';
 import Image from 'next/image';
 import Button from '../Button/Button';
+import Link from 'next/link';
 
 interface SingleElementContainerProps {
   data: { [key: string]: any };
   keysToDisplay: string[];
+  updateTitle:any
 }
 
-const SingleElementContainer: React.FC<SingleElementContainerProps> = ({ data, keysToDisplay }) => {
+const SingleElementContainer: React.FC<SingleElementContainerProps> = ({ data, keysToDisplay ,updateTitle }) => {
   let mediaUrl = '';
   if (data.media && data.media.url) {
     mediaUrl = data.media.url;
@@ -22,7 +24,7 @@ const SingleElementContainer: React.FC<SingleElementContainerProps> = ({ data, k
   return (
     <div className={styles.SingleElement}>
       <div className={styles.SingleElement_Button}>
-        <Button children='Update' size='small' type="popular" />
+        <Button  size='small' type="popular"  ><Link href={`/update/${updateTitle}`} >Update</Link></Button>
       </div>
       <div className={styles.singleElement_container}>
         <div className={styles.singleElement_container_top}>
