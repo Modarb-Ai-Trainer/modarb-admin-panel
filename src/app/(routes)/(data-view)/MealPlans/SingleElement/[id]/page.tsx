@@ -30,7 +30,7 @@ const SingleMealPlan = async({ params, searchParams }: { params: { id: String };
       <div className={styles.mealplanContainer_days}>
         {
             mealplan.days.map((day: { meals: string[] }, index: number) => (
-                  <div key={index}>
+                  <div key={index} className={styles.mealplanContainer_days_container}>
               <h1>day {index+1}:</h1>
               <DataViewTable
                key={index}
