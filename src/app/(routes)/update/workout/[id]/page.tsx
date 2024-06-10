@@ -3,10 +3,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './page.module.css'
 import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
-import muscle from '../../../api/muscle';
-import equipment from '../../../api/equipment';
-import workout from '../../../api/workout';
-import exercise from '../../../api/exercise';
+import muscle from '../../../../api/muscle';
+import equipment from '../../../../api/equipment';
+import workout from '../../../../api/workout';
+import exercise from '../../../../api/exercise';
 import { useParams, useRouter } from 'next/navigation'
 import ErrorWrapper from '@/components/small/ErrorWrapper/ErrorWrapper';
 import FetchingWrapper from '@/components/large/FetchingWrapper/FetchingWrapper';
@@ -113,6 +113,7 @@ function page() {
     const [success, setSuccess] = useState<boolean>(false);
     const [addDays, setAddDays] = useState<boolean>(false);
     const [fetching, setFetching] = useState<boolean>(true);
+    const params = useParams<any>();
     const check = (item: exerciseTypes) => {
         let found = 0;
         addedExercises.map((equipment: exerciseTypes) => {
@@ -140,6 +141,7 @@ function page() {
         setWeeks(weeks.map(week => (
             week.id == id ? ({ ...week, days: [...week.days, { id: week.days?.length, type: dayType.current.value, exercises: addedExercises, dayNumber: dayNumber.current.value }] }) : week
         )));
+        console.log(id)
         console.log(weeks);
     }
     const eraseWeek = (weekId: number) => {
@@ -182,12 +184,57 @@ function page() {
             const res = await exercise.getAll();
             if (res.status === 200) {
                 setExercises(res.data);
+                console.log(exercises);
+
                 return;
             }
         }
         fetchExercises();
+    }, [])
+    useEffect(() => {
+
+        const fetchWorkouts = async () => {
+            const res = await workout.get(params.id);
+            if (res.status === 200) {
+                const data = res.data;
+                console.log(res.data);
+                name.current.value = data.name;
+                description.current.value = data.description;
+                type.current.value = data.type;
+                image.current.value = data.image;
+                fitness_level.current.value = data.fitness_level;
+                fitness_goal.current.value = data.fitness_goal;
+                min_per_day.current.value = data.min_per_day;
+                place.current.value = (data.place.length === 2 ? 'both' : data.place[0]);
+                let curWeeks: weekType[] = [];
+                for (let i = 0; i < data.template_weeks.length; i++) {
+                    let item: sentWeeks = data.template_weeks[i];
+                    let addedItem: weekType = { id: 0, description: "", title: "", days: [] };
+                    addedItem.id = item.week_number;
+                    addedItem.title = item.week_name;
+                    addedItem.description = item.week_description;
+                    for (let j = 0; j < item.days.length; j++) {
+                        let addedDay: dayType = { id: 0, dayNumber: 5, type: "", exercises: [] };
+                        addedDay.id = j;
+                        addedDay.dayNumber = item.days[j].day_number;
+                        addedDay.type = item.days[j].day_type;
+                        let curExercises: exerciseTypes[] = [];
+                        exercises.map(exer => {
+                            if (item.days[j].exercises.includes(exer.id)) curExercises.push(exer);
+                        })
+                        addedDay.exercises = curExercises;
+                        addedItem.days.push(addedDay);
+                    }
+                    curWeeks.push(addedItem);
+                }
+                console.log(curWeeks);
+                setWeeks(curWeeks);
+                return;
+            }
+        }
+        fetchWorkouts();
         setFetching(false);
-    }, []);
+    }, [exercises]);
 
     const handleClick = async (e: any) => {
         e.preventDefault();
@@ -232,13 +279,13 @@ function page() {
             created_by: userId,
 
         }
-        const res = await workout.add(data);
+        const res = await workout.update(params.id, data);
         console.log(data);
         console.log(res);
         setIsLoading(false);
 
-        if (res.status === 201) {
-            setMessages([{ message: "The Workout is Added Successfully!" }])
+        if (res.status === 200) {
+            setMessages([{ message: "The Workout is Updated Successfully!" }])
             setSuccess(true);
             return;
         }

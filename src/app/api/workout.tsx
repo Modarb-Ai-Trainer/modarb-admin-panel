@@ -1,19 +1,30 @@
 import admin from "./admin";
 import customErrors from './customErrors'
-
-interface ingTypes {
+interface workoutType {
     name: string,
-    serving_size: number,
-    servings_count: number,
-    serving_size_unit: string,
-    servings_count_unit: string,
-    calories: number,
-    carbs: number,
-    proteins: number,
-    fats: number
+    description: string,
+    type: string,
+    image: string,
+    fitness_level: string,
+    fitness_goal: string,
+    place: string[],
+    min_per_day: number,
+    total_number_days: number,
+    created_by: string,
+    template_weeks: {
+        week_number: number,
+        week_name: string,
+        week_description: string,
+        days: {
+            day_number: number,
+            total_number_exercises: number,
+            day_type: string,
+            exercises: string[]
+        }[],
+    }[],
 }
 export default {
-    add: async (data: ingTypes) => {
+    add: async (data: workoutType) => {
         console.log(process.env.TOKEN, admin.token);
         try {
             const res = await fetch(`${process.env.URI}/api/v1/console/workouts`, {
@@ -37,7 +48,7 @@ export default {
             return customErrors.general;
         }
     },
-    update: async (id: string, data: ingTypes) => {
+    update: async (id: string, data: workoutType) => {
         try {
             const res = await fetch(`${process.env.URI}/api/v1/console/workouts/${id}`, {
                 method: "PATCH",
