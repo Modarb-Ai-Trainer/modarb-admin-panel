@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './page.module.css'
 import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
-import ingredient from '../../../api/ingredient';
-import meal from '../../../api/meal';
-import meal_plan from '../../../api/mealPlan';
+import ingredient from '../../../../api/ingredient';
+import meal from '../../../../api/meal';
+import meal_plan from '../../../../api/mealPlan';
 import { useParams, useRouter } from 'next/navigation'
 import ErrorWrapper from '@/components/small/ErrorWrapper/ErrorWrapper';
 import FetchingWrapper from '@/components/large/FetchingWrapper/FetchingWrapper';
@@ -61,6 +61,7 @@ function page() {
     const [addedMeals, setAddedMeals] = useState<ingTypes[]>([]);
     const [days, setDays] = useState<dayType[]>([]);
     const [features, setFeatures] = useState<featureType[]>([]);
+    const params = useParams<any>()
     useEffect(() => {
         const fetchData = async () => {
             const res = await meal.getAll();
@@ -68,7 +69,22 @@ function page() {
                 SetMyMeals(res.data);
             }
         };
+        const fetchMealPlans = async () => {
+            const res = await meal_plan.get(params.id);
+            if (res.status === 200) {
+                const data: mealPlan = res.data;
+                console.log(data);
+                image.current.value = data.image;
+                description.current.value = data.description;
+                duration.current.value = data.duration;
+                level.current.value = data.level;
+                your_journey.current.value = data.your_journey;
+                setDays(data.days);
+                setFeatures(data.key_features);
+            }
+        }
         fetchData();
+        fetchMealPlans();
         console.log(myMeals)
         setFetching(false);
     }, []);
@@ -135,13 +151,13 @@ function page() {
             key_features: features,
             days: days,
         }
-        const res = await meal_plan.add(data);
+        const res = await meal_plan.update(params.id, data);
         console.log(data);
         console.log(res);
         setIsLoading(false);
 
-        if (res.status === 201) {
-            setMessages([{ message: "The Meal Plan is Added Successfully!" }])
+        if (res.status === 200) {
+            setMessages([{ message: "The Meal Plan is Updated Successfully!" }])
             setSuccess(true);
             return;
         }
@@ -178,7 +194,7 @@ function page() {
                                 {days?.map((day, idx) => (
                                     <li className={styles.meals__form__days__list__item}>
                                         <div className={styles.meals__form__days__list__item__top}>
-                                            <div className={styles.meals__form__days__list__item__top__left}>{day.day_number}</div>
+                                            <div className={styles.meals__form__days__list__item__top__left}>{idx + 1}</div>
                                             <div className={styles.meals__form__days__list__item__top__right} onClick={() => eraseDay(idx)}>
                                                 <FiTrash2 />
 
@@ -229,7 +245,7 @@ function page() {
                                     {features?.map((feature, idx) => (
                                         <li className={styles.meals__form__days__list__item}>
                                             <div className={styles.meals__form__days__list__item__top}>
-                                                <div className={styles.meals__form__days__list__item__top__left}>{feature.title}</div>
+                                                <div className={styles.meals__form__days__list__item__top__left}>{idx + 1}</div>
                                                 <div className={styles.meals__form__days__list__item__top__right} onClick={() => eraseFeature(idx)}>
                                                     <FiTrash2 />
 

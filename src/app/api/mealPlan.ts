@@ -1,20 +1,30 @@
 import admin from "./admin";
 import customErrors from './customErrors'
 
-interface mealType {
-    name: string,
-    calories: number,
-    carbs: number,
-    proteins: number,
-    fats: number,
-    type: string,
-    ingredients: string[]
+interface featureType {
+    title: string,
+    description: string,
+
+}
+interface dayType {
+    day_number: number,
+    meals: string[],
+}
+interface mealPlan {
+    image: string,
+    description: string,
+    duration: number,
+    level: string,
+    your_journey: string,
+    key_features: featureType[],
+    days: dayType[],
+
 }
 export default {
-    add: async (data: mealType) => {
+    add: async (data: mealPlan) => {
         console.log(process.env.TOKEN, admin.token);
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/meals`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/mealPlans`, {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
@@ -35,9 +45,9 @@ export default {
             return customErrors.general;
         }
     },
-    update: async (id: string, data: mealType) => {
+    update: async (id: string, data: mealPlan) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/meals/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/mealPlans/${id}`, {
                 method: "PATCH",
                 mode: "cors",
                 cache: "no-cache",
@@ -60,7 +70,7 @@ export default {
     },
     get: async (id: string) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/meals/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/mealPlans/${id}`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
@@ -81,7 +91,7 @@ export default {
     },
     getAll: async () => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/meals`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/mealPlans`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",

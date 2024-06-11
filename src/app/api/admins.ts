@@ -1,20 +1,18 @@
 import admin from "./admin";
 import customErrors from './customErrors'
-
-interface mealType {
+interface ingTypes {
     name: string,
-    calories: number,
-    carbs: number,
-    proteins: number,
-    fats: number,
-    type: string,
-    ingredients: string[]
+    email: string,
+    password: string,
+    image: string,
+    role: string,
+    gender: string,
 }
 export default {
-    add: async (data: mealType) => {
+    add: async (data: ingTypes) => {
         console.log(process.env.TOKEN, admin.token);
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/meals`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/admins`, {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
@@ -35,9 +33,9 @@ export default {
             return customErrors.general;
         }
     },
-    update: async (id: string, data: mealType) => {
+    update: async (id: string, data: ingTypes) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/meals/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/admins/${id}`, {
                 method: "PATCH",
                 mode: "cors",
                 cache: "no-cache",
@@ -48,11 +46,10 @@ export default {
                 },
                 body: JSON.stringify(data),
             });
-            console.log(res);
+            console.log(id, data);
             if (res.status === 422) return customErrors.invalidData;
             if (res.status === 401) return customErrors.unauthorized;
             if (!res.ok) return customErrors.general;
-
             return res.json();
         } catch {
             return customErrors.general;
@@ -60,7 +57,7 @@ export default {
     },
     get: async (id: string) => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/meals/${id}`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/admins/${id}`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
@@ -81,7 +78,7 @@ export default {
     },
     getAll: async () => {
         try {
-            const res = await fetch(`${process.env.URI}/api/v1/console/meals`, {
+            const res = await fetch(`${process.env.URI}/api/v1/console/admins`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
