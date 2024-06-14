@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import styles from './page.module.css';
 import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
-import adminApi from '../../api/create-admin';
+import adminApi from '../../api/auth';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 

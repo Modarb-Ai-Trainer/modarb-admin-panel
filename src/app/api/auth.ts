@@ -1,5 +1,6 @@
+import customErrors from './customErrors'
 
-const testLogin = async (email: any, password: any) => {
+const login = async (email: any, password: any) => {
     const cred = {
         email: email, password: password
     }
@@ -14,10 +15,10 @@ const testLogin = async (email: any, password: any) => {
         },
         body: JSON.stringify(cred),
     });
-    if (!res.ok) { throw new Error('Something went wrong2'); }
+    console.log(res);
     return res.json();
 };
 
 export default {
-    testLogin
+    login
 };
