@@ -41,6 +41,10 @@ function page() {
   const [myIngredients, SetMyIngredients] = useState<ingTypes[]>([]);
   const [addedIngredients, setAddedIngrediens] = useState<ingTypes[]>([]);
   const params = useParams<any>();
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem('user') === null) router.push('/login');
+  }, [])
   useEffect(() => {
     const fetchData = async () => {
       const res = await ingredient.getAll();
@@ -48,11 +52,22 @@ function page() {
         SetMyIngredients(res.data);
       }
     };
+    fetchData();
+
+  }, [])
+  useEffect(() => {
+
     const propagateAddedIngredients = async () => {
       const res = await meal.get(params.id);
+      let curIngs: ingTypes[] = [];
+
       if (res.status === 200) {
+        console.log(myIngredients);
+        for (let i = 0; i < myIngredients.length; i++)
+          if (res.data.ingredients.includes(myIngredients[i].id))
+            curIngs.push(myIngredients[i]);
         console.log(res.data);
-        setAddedIngrediens(res.data.ingredients);
+        setAddedIngrediens(curIngs);
         name.current.value = res.data.name;
         calories.current.value = res.data.calories;
         carbs.current.value = res.data.carbs;
@@ -61,12 +76,9 @@ function page() {
         type.current.value = res.data.type;
       }
     }
-    fetchData();
     propagateAddedIngredients();
     setFetching(false);
-    console.log(addedIngredients);
-    console.log(myIngredients);
-  }, []);
+  }, [myIngredients]);
   const check = (item: ingTypes) => {
     let found = 0;
     addedIngredients.map((ing: ingTypes) => {
@@ -88,7 +100,7 @@ function page() {
     e.preventDefault();
     setIsLoading(true);
     const ings: string[] = []
-    myIngredients.map(ing => {
+    addedIngredients.map(ing => {
       ings.push(ing.id);
     })
     const data = {
@@ -106,7 +118,7 @@ function page() {
     console.log(res);
     setIsLoading(false);
 
-    if (res.status === 201) {
+    if (res.status === 200) {
       setMessages([{ message: "The Meal is Updated Successfully!" }])
       setSuccess(true);
       return;
