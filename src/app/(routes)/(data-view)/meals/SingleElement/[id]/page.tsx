@@ -38,6 +38,7 @@ const SingleMeal = async({ params, searchParams }: { params: { id: String }; sea
             data={ingredientsData} 
             keysToDisplay={[
                 'id',
+                'name',
                 'servings_count',
                 'serving_size',
                 'serving_size_unit',

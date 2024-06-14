@@ -25,6 +25,7 @@ const darkTheme = createTheme({
 const DayDetails: React.FC<DayDetailsProps>  = ({ day }) => {
    
     const rows = day.exercises.map((exercise, index) => ({
+        label: `Exercise ${index + 1}`,
         id: exercise,
     }));
 
@@ -40,6 +41,7 @@ const DayDetails: React.FC<DayDetailsProps>  = ({ day }) => {
              <DataViewTable
                     data={rows}
                     keysToDisplay={[
+                        'label',
                         'id',
                     ]}
                     onDelete={ExerciseDelete}

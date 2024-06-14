@@ -4,7 +4,7 @@ const login = async (email: any, password: any) => {
     const cred = {
         email: email, password: password
     }
-    console.log(cred);
+    console.log(process.env.URI);
     const res = await fetch(`${process.env.URI}/api/v1/console/auth/login`, {
         method: "POST",
         mode: "cors",

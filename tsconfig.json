@@ -38,7 +38,7 @@
     "src/components/large/SideDrawer/NavLinks.tsx",
     "src/app/document.js",
     "src/app/api/admin.js"
-  ],
+, "src/app/Actions/admin.js"  ],
   "exclude": [
     "node_modules"
   ]
