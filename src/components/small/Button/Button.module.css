@@ -10,7 +10,12 @@
     align-items: center;
 
 }
-
+.secondary{
+    background-color: none;
+    color: #ffff;
+    border: 1px solid #ffff;
+    border-radius: 16px;
+}
 .popular {
     background-color: var(--s-color);
     color: #ffff;

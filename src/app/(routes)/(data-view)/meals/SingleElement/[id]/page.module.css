@@ -5,4 +5,18 @@
     flex-direction: column;
     justify-content: space-between;
 
+    .SingleMeal_container{
+        margin-top:10px ;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        .SingleMeal_container_top{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
 }

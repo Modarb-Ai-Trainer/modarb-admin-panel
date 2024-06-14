@@ -15,8 +15,9 @@ interface DataViewTableProps {
   data: DataRow[];
   keysToDisplay: string[];
   onDelete?: (id: number) => void;
+  updatePath?: string; // New prop for update link path
   viewPath?: string;
-  useExerciseAsId?: boolean; // Add this line
+  useExerciseAsId?: boolean;
 }
 
 const darkTheme = createTheme({
@@ -25,7 +26,7 @@ const darkTheme = createTheme({
   },
 });
 
-const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete, viewPath, useExerciseAsId }) => {
+const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDelete, updatePath, viewPath, useExerciseAsId }) => {
 
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [forceRerender, setForceRerender] = useState<boolean>(false);
@@ -62,16 +63,21 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
     field: 'action',
     headerName: 'Action',
     renderCell: (params) => {
-      const linkId = useExerciseAsId ? params.row.exercise : params.row.id; 
+      const linkId = useExerciseAsId ? params.row.exercise : params.row.id;
       return (
         <div className={styles.cellAction}>
           {viewPath ? (
             <Link href={`${viewPath}/${linkId}`} passHref className={styles.viewButton}>
-              view
+              View
             </Link>
           ) : null}
           {onDelete && (
             <div className={styles.deleteButton} onClick={() => handleDeleteClick(params.row.id)}><MdDelete size={18} /></div>
+          )}
+          {updatePath && (
+            <Link href={`/update/${updatePath}/${params.row.id}`}  className={styles.updateLink}>
+              Update
+            </Link>
           )}
         </div>
       );
@@ -119,14 +125,14 @@ const DataViewTable: React.FC<DataViewTableProps> = ({ data, keysToDisplay, onDe
     },
   }));
 
-  const gridColumns = onDelete ? [...columns, actionColumn] : columns;
+  const gridColumns = onDelete || updatePath ? [...columns, actionColumn] : columns;
 
   return (
     <div className={styles.dataView}>
       <ThemeProvider theme={darkTheme}>
         <div className={styles.dataView_dataTable}>
-          <DataGrid  
-            key={forceRerender.toString()} 
+          <DataGrid
+            key={forceRerender.toString()}
             className={styles.dataView_dataTable_dataGrid}
             rows={data}
             columns={gridColumns}

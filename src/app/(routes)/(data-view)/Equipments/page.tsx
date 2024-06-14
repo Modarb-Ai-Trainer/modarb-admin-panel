@@ -20,6 +20,7 @@ const Equipments  =async() => {
         path='./add/equipment'
         buttonTitle='Add Equipment' 
         onDelete={EquipmentDelete}
+        updatePath={'equipment'}
        
        />
     </div>

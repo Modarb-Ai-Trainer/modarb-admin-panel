@@ -12,9 +12,10 @@ title: string;
 path: string; 
 buttonTitle: string;
 viewPath?:string;
+updatePath?:string;
 }
 
-const DataViewComponent:React.FC<DataProps>  =  ({data,keysToDisplay,onDelete,title,path,buttonTitle,viewPath}) =>  {
+const DataViewComponent:React.FC<DataProps>  =  ({data,keysToDisplay,onDelete,title,path,buttonTitle,viewPath,updatePath}) =>  {
   
 
 
@@ -35,6 +36,7 @@ const DataViewComponent:React.FC<DataProps>  =  ({data,keysToDisplay,onDelete,ti
             keysToDisplay={keysToDisplay}
             onDelete={onDelete} 
             viewPath={viewPath}
+            updatePath={updatePath}
           />
        </div>
 

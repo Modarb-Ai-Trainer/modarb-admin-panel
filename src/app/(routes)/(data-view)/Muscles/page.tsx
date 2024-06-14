@@ -4,7 +4,8 @@ import DataViewComponent from '@/components/large/DataViewComponent/DataViewComp
 import React from 'react'
 
 const Muscles = async () => {
-  const { data: muscles } = await getMuscles()
+  const { data: muscles } = await getMuscles();
+  console.log(muscles)
   // console.log(muscles)
   // console.log(musclebyid)
   // const id ='6631b129f9f10ffca920eefa'
@@ -27,6 +28,7 @@ const Muscles = async () => {
         path='./add/muscle'
         buttonTitle='Add muscle'
         onDelete={MusclesDelete}
+        updatePath={`muscle`}
       />
     </div>
 

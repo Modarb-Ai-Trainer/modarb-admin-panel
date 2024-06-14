@@ -3,12 +3,11 @@ import { getIngradients } from '@/app/Actions/GetActions'
 import DataViewComponent from '@/components/large/DataViewComponent/DataViewComponent'
 import DataViewTable from '@/components/large/DataViewTable/DataViewTable'
 import React from 'react'
-
 const Ingredients = async() => {
 const {data:ingradients}=await getIngradients()
 console.log(ingradients)
   return (
-    <div>
+    <div>      
        <DataViewComponent
        data={ingradients}
        keysToDisplay={[
@@ -26,7 +25,9 @@ console.log(ingradients)
        title='Ingradients'
        path='./add/Ingradient'
        buttonTitle='Add Ingradient'
-       onDelete={IngradientDelete}
+       onDelete={IngradientDelete} 
+       updatePath={'ingredient'}
+
        />
 
     </div>
