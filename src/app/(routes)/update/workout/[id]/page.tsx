@@ -178,6 +178,10 @@ function page() {
         }
         setWeeks(curWeeks);
     }
+    const router = useRouter();
+    useEffect(() => {
+        if (localStorage.getItem('user') === null) router.push('/login');
+    }, [])
     useEffect(() => {
 
         const fetchExercises = async () => {

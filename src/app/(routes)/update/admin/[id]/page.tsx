@@ -21,6 +21,12 @@ function page() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
     const params = useParams<any>();
+    const router = useRouter();
+    useEffect(() => {
+        if (localStorage.getItem('user') === null) return router.push('/login');
+        let user = JSON.parse(localStorage.getItem('user') || '{}');
+        if (user.data.admin.role != 'superAdmin') return router.push('/dashboard');
+    }, [])
     useEffect(() => {
         const fetchData = async () => {
             const res = await admins.get(params.id);
@@ -37,6 +43,7 @@ function page() {
         }
         fetchData();
     })
+
     const handleClick = async (e: any) => {
         e.preventDefault();
         setIsLoading(true);

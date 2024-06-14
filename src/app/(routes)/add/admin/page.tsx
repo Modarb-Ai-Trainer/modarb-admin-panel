@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './page.module.css'
 import Input from '@/components/small/Inputs/Input';
 import Button from '@/components/small/Button/Button';
@@ -20,7 +20,12 @@ function page() {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
-
+    const router = useRouter();
+    useEffect(() => {
+        if (localStorage.getItem('user') === null) return router.push('/login');
+        let user = JSON.parse(localStorage.getItem('user') || '{}');
+        if (user.data.admin.role != 'superAdmin') return router.push('/dashboard');
+    }, [])
     const handleClick = async (e: any) => {
         e.preventDefault();
         setIsLoading(true);

@@ -65,6 +65,10 @@ function page() {
   const [myEquipments, SetMyEquipments] = useState<equipmentType[]>([]);
   const [myMuscles, SetMyMuscles] = useState<equipmentType[]>([]);
   const [addedEquepments, setAddedEquepments] = useState<equipmentType[]>([]);
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem('user') === null) router.push('/login');
+  }, [])
   useEffect(() => {
     const fetchEquipments = async () => {
       const res = await equipment.getAll();

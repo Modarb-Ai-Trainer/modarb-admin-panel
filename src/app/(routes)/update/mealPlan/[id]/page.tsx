@@ -62,6 +62,10 @@ function page() {
     const [days, setDays] = useState<dayType[]>([]);
     const [features, setFeatures] = useState<featureType[]>([]);
     const params = useParams<any>()
+    const router = useRouter();
+    useEffect(() => {
+        if (localStorage.getItem('user') === null) router.push('/login');
+    }, [])
     useEffect(() => {
         const fetchData = async () => {
             const res = await meal.getAll();
@@ -151,6 +155,7 @@ function page() {
             key_features: features,
             days: days,
         }
+        console.log(data);
         const res = await meal_plan.update(params.id, data);
         console.log(data);
         console.log(res);
@@ -208,7 +213,7 @@ function page() {
                                     </li>
                                 ))}
                             </ul>
-                            <input type="number" min={1} max={7} ref={dayNumber} placeholder='Day Number' value={1} className={styles.ingredient__form__input} />
+                            <input type="number" min={1} max={7} ref={dayNumber} placeholder='Day Number' className={styles.ingredient__form__input} />
 
                             <h4 className={styles.meals__form__ingredients__title}>Meals:</h4>
                             {addedMeals.length == 0 && "No Added Meals"}

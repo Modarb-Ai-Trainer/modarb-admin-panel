@@ -37,6 +37,10 @@ function page() {
   const [fetching, setFetching] = useState<boolean>(true);
   const [myIngredients, SetMyIngredients] = useState<ingTypes[]>([]);
   const [addedIngredients, setAddedIngrediens] = useState<ingTypes[]>([]);
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem('user') === null) router.push('/login');
+  }, [])
   useEffect(() => {
     const fetchData = async () => {
       const res = await ingredient.getAll();

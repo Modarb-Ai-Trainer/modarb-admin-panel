@@ -18,6 +18,10 @@ function page() {
     const [success, setSuccess] = useState<boolean>(false);
     const [fetching, setFetching] = useState<boolean>(true);
     const params = useParams<any>();
+    const router = useRouter();
+    useEffect(() => {
+        if (localStorage.getItem('user') === null) router.push('/login');
+    }, [])
     useEffect(() => {
         const fetchData = async () => {
             const res = await muscle.get(params.id);

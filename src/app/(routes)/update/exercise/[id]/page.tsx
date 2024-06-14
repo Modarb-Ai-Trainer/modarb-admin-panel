@@ -65,7 +65,10 @@ function page() {
   const [myEquipments, SetMyEquipments] = useState<equipmentType[]>([]);
   const [myMuscles, SetMyMuscles] = useState<equipmentType[]>([]);
   const [addedEquepments, setAddedEquepments] = useState<equipmentType[]>([]);
-  const param = useParams<any>();
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem('user') === null) router.push('/login');
+  }, [])
   useEffect(() => {
     const fetchEquipments = async () => {
       const res = await equipment.getAll();
@@ -73,6 +76,11 @@ function page() {
         SetMyEquipments(res.data);
       }
     };
+    fetchEquipments();
+  }, [])
+  const param = useParams<any>();
+  useEffect(() => {
+
     const fetchMuscles = async () => {
       const res = await muscle.getAll();
       if (res.status === 200) {
@@ -82,7 +90,10 @@ function page() {
     const fetchExercises = async () => {
       const res = await exercise.get(param.id);
       if (res.status === 200) {
-        SetMyEquipments(res.data.equipments);
+        let curEqu: equipmentType[] = [];
+        for (let i = 0; i < myEquipments.length; i++)
+          if (res.data.equipments.includes(myEquipments[i].id)) curEqu.push(myEquipments[i]);
+        setAddedEquepments(curEqu);
         name.current.value = res.data.name;
         category.current.value = res.data.category;
         duration.current.value = res.data.duration;
@@ -95,16 +106,18 @@ function page() {
         coverImage.current.value = res.data.coverImage;
         mediaType.current.value = res.data.media.type;
         mediaURL.current.value = res.data.media.url;
-        primaryMuscles.current.value = res.data.targetMuscles[0].primary;
-        secondaryMuscles.current.value = res.data.targetMuscles[0].secondary;
+        primaryMuscles.current.value = res.data.targetMuscles.primary;
+        secondaryMuscles.current.value = res.data.targetMuscles.secondary;
 
+        console.log(res.data);
+        console.log(myEquipments);
       }
     }
-    fetchEquipments();
     fetchMuscles();
     fetchExercises();
+    console.log(myEquipments);
     setFetching(false);
-  }, []);
+  }, [myEquipments]);
   const check = (item: equipmentType) => {
     let found = 0;
     addedEquepments.map((equipment: equipmentType) => {
@@ -151,8 +164,9 @@ function page() {
         secondary: secondaryMuscles.current.value,
       },
       equipments: equipments,
+
     }
-    const res = await exercise.add(data);
+    const res = await exercise.update(param.id, data);
     console.log(data);
     console.log(res);
     setIsLoading(false);
