@@ -13,46 +13,45 @@ function Dashboard() {
 
     return (
         <div className={styles.dashboard}>
-             <div className={styles.dashboard_container}>
-            <div className={styles.dashboard_container_top} >
+            <div className={styles.dashboard_container}>
+                <div className={styles.dashboard_container_top} >
+                    <div className={styles.dashboard_container_top_left}>
+                        <div className={styles.dashboard_container_top_left_dashWidgets}>
+                            <Widgets />
 
-                <div className={styles.dashboard_container_top_left}>
-                    <div className={styles.dashboard_container_top_left_dashWidgets}>
-                        <Widgets />
-
-                    </div>
-                    <div className={styles.dashboard_container_top_left_dashChart}>
-                        <UserChart />
-                    </div>
-                    <div className={styles.dashboard_container_top_left_dashSubChart}>
-                        <div className={styles.leftSubChart}>
-                            <GoalChart />
                         </div>
-                        <div className={styles.leftSubChart}>
-                            <PopularChart />
+                        <div className={styles.dashboard_container_top_left_dashChart}>
+                            <UserChart />
+                        </div>
+                        <div className={styles.dashboard_container_top_left_dashSubChart}>
+                            <div className={styles.leftSubChart}>
+                                <GoalChart />
+                            </div>
+                            <div className={styles.leftSubChart}>
+                                <PopularChart />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.dashboard_container_top_dashRight}>
+                        <div className={styles.dashboard_container_top_dashRight_feedback}>
+                            <Feedback />
+                        </div>
+                        <div className={styles.dashboard_container_top_dashRight_downloads}>
+                            <DownloadsChart />
                         </div>
                     </div>
                 </div>
 
-                <div className={styles.dashboard_container_top_dashRight}>
-                    <div className={styles.dashboard_container_top_dashRight_feedback}>
-                        <Feedback />
-                    </div>
-                    <div className={styles.dashboard_container_top_dashRight_downloads}>
-                        <DownloadsChart />
-                    </div>
+                <div className={styles.dashboard_container_dashAdminTable}>
+                    <Admins />
                 </div>
+
             </div>
 
-            <div className={styles.dashboard_container_dashAdminTable}>
-                <Admins/>
-            </div>
 
         </div>
 
-
-        </div>
-       
     )
 }
 

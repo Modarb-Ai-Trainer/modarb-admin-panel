@@ -26,6 +26,7 @@ interface ingTypes {
 }
 function page() {
   const name = useRef<any>();
+  const image = useRef<any>();
   const calories = useRef<any>();
   const carbs = useRef<any>();
   const proteins = useRef<any>();
@@ -82,6 +83,7 @@ function page() {
       proteins: proteins.current.value,
       fats: fats.current.value,
       type: type.current.value,
+      image: image.current.value,
       ingredients: ings,
     }
     const res = await meal.add(data);
@@ -113,6 +115,7 @@ function page() {
               <ErrorWrapper type={success ? "success" : "failed"}>{msg.message}</ErrorWrapper>
             ))}
             <input type="text" ref={name} placeholder='Name' className={styles.ingredient__form__input} />
+            <input type="text" ref={image} placeholder='Image' className={styles.ingredient__form__input} />
             <input type="number" ref={calories} placeholder='Calories' className={styles.ingredient__form__input} />
             <input type="number" ref={carbs} placeholder='Carbs' className={styles.ingredient__form__input} />
             <input type="number" ref={proteins} placeholder='Proteins' className={styles.ingredient__form__input} />
