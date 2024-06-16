@@ -27,6 +27,7 @@ const SingleMeal = async({ params, searchParams }: { params: { id: String }; sea
             data={[meal]} 
             keysToDisplay={[
                 'id',
+                'image',
                 'name',
                 'calories',
                 'carbs',

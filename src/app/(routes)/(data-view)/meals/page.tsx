@@ -38,6 +38,7 @@ console.log('ing',meals.ingredients)
             data={meals}
             keysToDisplay={[
               'id',
+              'image',
               "name",
               'created_at',
               'calories',
