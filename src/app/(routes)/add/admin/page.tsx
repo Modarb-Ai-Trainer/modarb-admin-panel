@@ -9,7 +9,7 @@ import ErrorWrapper from '@/components/small/ErrorWrapper/ErrorWrapper';
 interface errorMessages {
     message: string
 };
-function page() {
+function Page() {
     const name = useRef<any>();
     const email = useRef<any>();
     const password = useRef<any>();
@@ -77,4 +77,4 @@ function page() {
     )
 }
 
-export default page
+export default Page
