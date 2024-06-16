@@ -27,13 +27,7 @@ const NavLinks = () => {
                     </ul>
                 })
             }
-             <div className={styles.centerLinks_sideLinks_sidebottomlink}>
-                <li >
-                    <IoLogOut size={"23"} />
-                    <a>Logout</a>
-                </li>
-
-            </div>
+            
 
         </div>
         
