@@ -1,6 +1,5 @@
 'use server'
 import { revalidateTag } from "next/cache";
-
 const authToken = process.env.token;
 async function Delete(endpoint: string, Id: any) {
     const res = await fetch(`${process.env.server}/api/v1/console/${endpoint}/${Id}`, {
@@ -13,7 +12,6 @@ async function Delete(endpoint: string, Id: any) {
     revalidateTag(endpoint); 
     return res.json();
 }
-
 export async function ExerciseDelete(exerciseId: any) {
     return Delete('exercises', exerciseId);
 }

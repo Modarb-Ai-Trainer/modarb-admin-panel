@@ -6,19 +6,13 @@ import { getEquipmentById } from '@/app/Actions/GetActions';
 import SingleElementContainer from '@/components/small/SingleElementContainer/SingleElementContainer';
 import { getMusclesById } from '@/app/Actions/GetActions';
 
-
-
 const SingleElement = async ({ params, searchParams }: { params: { id: String }; searchParams: { id: String } }) => {
   const exerciseId=params.id
   const {data :exercise} = await getExerciseById(exerciseId);
   console.log(exercise)
 
-
-
   const {data:primarymuscles}=await getMusclesById(exercise.targetMuscles?.primary)
-  // console.log('primary',primarymuscles)
   const {data:secondarymuscles}=await getMusclesById(exercise.targetMuscles?.secondary)
-  // console.log('secondary',secondarymuscles)
 
   const musclesArray = [];
   if (primarymuscles) {
@@ -27,16 +21,12 @@ const SingleElement = async ({ params, searchParams }: { params: { id: String };
   if (secondarymuscles) {
       musclesArray.push(secondarymuscles);
   }
-
-
   const equipmentData = [];
   for (const equipmentId of exercise.equipments) {
     const { data: equipment } = await getEquipmentById(equipmentId);
     equipmentData.push(equipment);
   }
   console.log('Equipment Data:', equipmentData);
-
-
 
   return (
    <div className={styles.ElementContainer}>
@@ -61,8 +51,7 @@ const SingleElement = async ({ params, searchParams }: { params: { id: String };
         'id',
         'name',
         'image'
-      ]}
-      
+      ]}   
       />
     </div>
  
