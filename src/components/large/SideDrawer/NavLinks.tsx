@@ -1,13 +1,21 @@
 import React from 'react'
 import styles from './SideDrawer.module.css'
 import { links } from './Links' 
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IoLogOut } from "react-icons/io5";
+import { usePathname, useRouter } from 'next/navigation';
 
 
 const NavLinks = () => {
     const pathname = usePathname();
+
+    const router = useRouter();
+
+    const logout = () => {
+        router.push('/login'); 
+    };
+
+    
     return (
         <div className={styles.centerLinks}>
         <div className={styles.centerLinks_sideLinks}>
@@ -27,7 +35,14 @@ const NavLinks = () => {
                     </ul>
                 })
             }
-            
+             {pathname !== '/login' && (
+                    <div className={styles.centerLinks_sideLinks_sidebottomlink}>
+                        <li>
+                            <IoLogOut size={'23'} />
+                            <a onClick={logout}>Logout</a>
+                        </li>
+                    </div>
+                )}
 
         </div>
         

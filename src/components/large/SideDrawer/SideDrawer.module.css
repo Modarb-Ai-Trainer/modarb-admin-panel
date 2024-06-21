@@ -63,6 +63,9 @@
       align-self: center;
       align-items: center;
       padding-left: 20px;
+      .centerLinks_sideLinks_sidebottomlink a {
+        cursor: pointer;
+      }
       
     
     }
